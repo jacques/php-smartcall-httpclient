@@ -7,11 +7,13 @@
     },
     "require": {
         "php": "^5.6 || ^7.0",
-        "guzzlehttp/guzzle": "^6.3"
+        "guzzlehttp/guzzle": "^6.3",
+        "php-vcr/phpunit-testlistener-vcr": "^2.0"
     },
     "require-dev": {
+        "php-vcr/php-vcr": "^1.4",
         "phpunit/phpunit": "^5.7",
-        "php-vcr/php-vcr": "^1.4"
+        "squizlabs/php_codesniffer": "^3.1"
     },
     "autoload": {
         "psr-4": {
@@ -29,6 +31,6 @@
         "test": [
             "vendor/bin/phpunit --colors --debug --configuration=tests/phpunit.xml --coverage-clover build/logs/clover.xml --coverage-text"
         ],
-        "phpcs": "vendor/bin/phpcs --standard=PSR1,PSR2 --extensions=php lib tests"
+        "phpcs": "vendor/bin/phpcs --standard=PSR1,PSR2 --extensions=php src tests"
     }
 }
