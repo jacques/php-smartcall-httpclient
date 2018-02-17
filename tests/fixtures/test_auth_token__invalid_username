@@ -1,0 +1,33 @@
+[{
+    "request": {
+        "method": "GET",
+        "url": "https:\/\/www.smartcallesb.co.za:8101\/webservice\/auth\/token",
+        "headers": {
+            "Host": "www.smartcallesb.co.za:8101",
+            "Accept-Encoding": null,
+            "User-Agent": "SmartcallRestfulAPIClient-PHP\/0.0.1 GuzzleHttp\/6.2.1 curl\/7.55.1 PHP\/7.1.1",
+            "Authorization": "Basic dGFwcHk6c3dvcmRmaXNo",
+            "Accept": null
+        }
+    },
+    "response": {
+        "status": {
+            "http_version": "1.1",
+            "code": "401",
+            "message": "Unauthorized"
+        },
+        "headers": {
+            "Server": "Apache-Coyote\/1.1",
+            "Pragma": "No-cache",
+            "Cache-Control": "no-cache",
+            "Expires": "Thu, 01 Jan 1970 02:00:00 SAST",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, DELETE, PUT",
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Content-Type": "application\/json",
+            "Transfer-Encoding": "chunked",
+            "Date": "Sat, 17 Feb 2018 16:23:08 GMT"
+        },
+        "body": "{\"responseDescription\":\"Invalid username\",\"accessToken\":null,\"tokenType\":null,\"expiresAt\":null,\"scope\":null}"
+    }
+}]
