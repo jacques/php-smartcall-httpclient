@@ -115,9 +115,6 @@ class Client extends \GuzzleHttp\Client
     /**
      * Authenticate and invalidates all the user allocated tokens.
      *
-     * @param string $username
-     * @param string $password
-     *
      * @throws Exception
      *
      * @return array
