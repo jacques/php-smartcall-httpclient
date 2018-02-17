@@ -289,6 +289,7 @@ class Client extends \GuzzleHttp\Client
     {
         $body = (string) $exception->getResponse()->getBody();
         preg_match('!<p><b>type</b> Exception report</p><p><b>message</b> <u>(.*[^</u>])</u></p><p><b>description</b>!', $body, $matches);
+
         return [
             'status'    => 'error',
             'http_code' => $exception->getResponse()->getStatusCode(),

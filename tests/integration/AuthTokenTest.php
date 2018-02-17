@@ -65,7 +65,7 @@ class AuthTokenTest extends \PHPUnit_Framework_TestCase
         self::assertEquals('error', $response['status']);
         self::assertEquals(401, $response['http_code']);
 
-        $expected = new \StdClass;
+        $expected = new \StdClass();
         $expected->responseDescription = 'Invalid username';
         $expected->accessToken = null;
         $expected->tokenType = null;
@@ -92,7 +92,7 @@ class AuthTokenTest extends \PHPUnit_Framework_TestCase
         self::assertEquals('error', $response['status']);
         self::assertEquals(401, $response['http_code']);
 
-        $expected = new \StdClass;
+        $expected = new \StdClass();
         $expected->responseDescription = 'Invalid password';
         $expected->accessToken = null;
         $expected->tokenType = null;
