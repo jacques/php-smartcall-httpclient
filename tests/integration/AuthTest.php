@@ -1,6 +1,6 @@
 <?php
 /**
- * SmartCall Restful API (v3) HTTP Client
+ * SmartCall Restful API (v3) HTTP Client.
  *
  * @author    Jacques Marneweck <jacques@siberia.co.za>
  * @copyright 2017-2018 Jacques Marneweck.  All rights strictly reserved.
@@ -20,6 +20,7 @@ class AuthTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
     }
+
     /**
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
@@ -34,9 +35,9 @@ class AuthTest extends \PHPUnit_Framework_TestCase
     public function testAuth()
     {
         $client = new Client([
-            'scheme' => 'https',
+            'scheme'   => 'https',
             'hostname' => 'www.smartcallesb.co.za',
-            'port' => '8101',
+            'port'     => '8101',
         ]);
         $response = $client->auth('tap', 'OmDocyoyld^twuz9');
 
@@ -56,9 +57,9 @@ class AuthTest extends \PHPUnit_Framework_TestCase
     public function testAuthInvalidUsername()
     {
         $client = new Client([
-            'scheme' => 'https',
+            'scheme'   => 'https',
             'hostname' => 'www.smartcallesb.co.za',
-            'port' => '8101',
+            'port'     => '8101',
         ]);
         $response = $client->auth('tappy', 'OmDocyoyld^twuz9');
 
@@ -77,9 +78,9 @@ class AuthTest extends \PHPUnit_Framework_TestCase
     public function testAuthInvalidPassword()
     {
         $client = new Client([
-            'scheme' => 'https',
+            'scheme'   => 'https',
             'hostname' => 'www.smartcallesb.co.za',
-            'port' => '8101',
+            'port'     => '8101',
         ]);
         $response = $client->auth('tap', 'sw0rdf1sh');
 

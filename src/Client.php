@@ -1,6 +1,6 @@
 <?php
 /**
- * SmartCall Restful API (v3) HTTP Client
+ * SmartCall Restful API (v3) HTTP Client.
  *
  * PLEASE NOTE: The interface is very fluid while the intial integration
  * is taking place.  It will be refactored in the near future.
@@ -53,7 +53,7 @@ class Client extends \GuzzleHttp\Client
                 $this->options['hostname'],
                 $this->options['port']
             ),
-            'verify' => false,
+            'verify'  => false,
             'headers' => [
                 'User-Agent' => 'SmartcallRestfulAPIClient-PHP/'.self::VERSION.' '.\GuzzleHttp\default_user_agent(),
             ],
@@ -62,7 +62,7 @@ class Client extends \GuzzleHttp\Client
     }
 
     /**
-     * Set the bearer token
+     * Set the bearer token.
      *
      * @param string $token Bearer Token from Auth request
      */
@@ -72,7 +72,7 @@ class Client extends \GuzzleHttp\Client
     }
 
     /**
-     * Authenticate and get Bearer token from SmartCall
+     * Authenticate and get Bearer token from SmartCall.
      *
      * @param string $username
      * @param string $password
@@ -113,7 +113,7 @@ class Client extends \GuzzleHttp\Client
     }
 
     /**
-     * Authenticate and invalidates all the user allocated tokens
+     * Authenticate and invalidates all the user allocated tokens.
      *
      * @param string $username
      * @param string $password
@@ -148,7 +148,7 @@ class Client extends \GuzzleHttp\Client
     }
 
     /**
-     * Authenticate and invalidates all the user allocated tokens
+     * Authenticate and invalidates all the user allocated tokens.
      *
      * @param string $username
      * @param string $password
@@ -189,7 +189,7 @@ class Client extends \GuzzleHttp\Client
     }
 
     /**
-     * Authenticate and gets the number of available session tokens
+     * Authenticate and gets the number of available session tokens.
      *
      * @param string $username
      * @param string $password

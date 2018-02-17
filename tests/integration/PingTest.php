@@ -1,6 +1,6 @@
 <?php
 /**
- * SmartCall Restful API (v3) HTTP Client
+ * SmartCall Restful API (v3) HTTP Client.
  *
  * @author    Jacques Marneweck <jacques@siberia.co.za>
  * @copyright 2017 Jacques Marneweck.  All rights strictly reserved.
@@ -20,6 +20,7 @@ class PingTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
     }
+
     /**
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
@@ -34,9 +35,9 @@ class PingTest extends \PHPUnit_Framework_TestCase
     public function testPing()
     {
         $client = new Client([
-            'scheme' => 'https',
+            'scheme'   => 'https',
             'hostname' => 'www.smartcallesb.co.za',
-            'port' => '8101',
+            'port'     => '8101',
         ]);
         $response = $client->ping();
 

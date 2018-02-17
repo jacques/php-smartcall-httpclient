@@ -1,6 +1,6 @@
 <?php
 /**
- * SmartCall Restful API (v3) HTTP Client
+ * SmartCall Restful API (v3) HTTP Client.
  *
  * @author    Jacques Marneweck <jacques@siberia.co.za>
  * @copyright 2017-2018 Jacques Marneweck.  All rights strictly reserved.
@@ -20,6 +20,7 @@ class AuthDeleteTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
     }
+
     /**
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
@@ -34,9 +35,9 @@ class AuthDeleteTest extends \PHPUnit_Framework_TestCase
     public function testAuthDelete()
     {
         $client = new Client([
-            'scheme' => 'https',
+            'scheme'   => 'https',
             'hostname' => 'www.smartcallesb.co.za',
-            'port' => '8101',
+            'port'     => '8101',
         ]);
         $response = $client->setBearerToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJTbWFydGNhbGwgUkVTVGZ1bCBXZWJzZXJ2aWNlIiwibmJmIjoxNTE4ODcyMzEzLCJjbGllbnRVc2VybmFtZSI6InRhcCIsImNsaWVudElQIjoiNDEuNzkuNzcuMjMiLCJpc3MiOiJzbWFydGNhbGwuY28uemEiLCJleHAiOjE1MTg5NTg3MTMsImlhdCI6MTUxODg3MjMxM30.Gzvlzdzu-EEIy-swibi-K6yRBu-IlBoNHXymxOYquwA');
         $response = $client->authDelete();
@@ -57,9 +58,9 @@ class AuthDeleteTest extends \PHPUnit_Framework_TestCase
     public function testAuthDeleteAlreadyDeleted()
     {
         $client = new Client([
-            'scheme' => 'https',
+            'scheme'   => 'https',
             'hostname' => 'www.smartcallesb.co.za',
-            'port' => '8101',
+            'port'     => '8101',
         ]);
         $response = $client->setBearerToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJTbWFydGNhbGwgUkVTVGZ1bCBXZWJzZXJ2aWNlIiwibmJmIjoxNTE4ODcyMzEzLCJjbGllbnRVc2VybmFtZSI6InRhcCIsImNsaWVudElQIjoiNDEuNzkuNzcuMjMiLCJpc3MiOiJzbWFydGNhbGwuY28uemEiLCJleHAiOjE1MTg5NTg3MTMsImlhdCI6MTUxODg3MjMxM30.Gzvlzdzu-EEIy-swibi-K6yRBu-IlBoNHXymxOYquwA');
         $response = $client->authDelete();
