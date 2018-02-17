@@ -39,7 +39,7 @@ class AuthTest extends \PHPUnit_Framework_TestCase
             'hostname' => 'www.smartcallesb.co.za',
             'port'     => '8101',
         ]);
-        $response = $client->auth('tap', 'OmDocyoyld^twuz9');
+        $response = $client->auth('tap', 'swordfish');
 
         self::assertInternalType('array', $response);
         self::assertCount(3, $response);
@@ -61,7 +61,7 @@ class AuthTest extends \PHPUnit_Framework_TestCase
             'hostname' => 'www.smartcallesb.co.za',
             'port'     => '8101',
         ]);
-        $response = $client->auth('tappy', 'OmDocyoyld^twuz9');
+        $response = $client->auth('tappy', 'swordfish');
 
         self::assertInternalType('array', $response);
         self::assertCount(3, $response);

@@ -39,7 +39,7 @@ class AuthTokenTest extends \PHPUnit_Framework_TestCase
             'hostname' => 'www.smartcallesb.co.za',
             'port'     => '8101',
         ]);
-        $response = $client->authToken('tap', 'OmDocyoyld^twuz9');
+        $response = $client->authToken('tap', 'swordfish');
 
         self::assertInternalType('array', $response);
         self::assertCount(3, $response);
