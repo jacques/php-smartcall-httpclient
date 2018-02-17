@@ -107,6 +107,8 @@ class Client extends \GuzzleHttp\Client
                 'http_code' => $response->getStatusCode(),
                 'body'      => (string) $response->getBody(),
             ];
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            return $this->clientError($e);
         } catch (\GuzzleHttp\Exception\ServerException $e) {
             return $this->parseError($e);
         }
@@ -139,6 +141,8 @@ class Client extends \GuzzleHttp\Client
                 'http_code' => $response->getStatusCode(),
                 'body'      => (string) $response->getBody(),
             ];
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            return $this->clientError($e);
         } catch (\GuzzleHttp\Exception\ServerException $e) {
             return $this->parseError($e);
         }
@@ -180,6 +184,8 @@ class Client extends \GuzzleHttp\Client
                 'http_code' => $response->getStatusCode(),
                 'body'      => (string) $response->getBody(),
             ];
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            return $this->clientError($e);
         } catch (\GuzzleHttp\Exception\ServerException $e) {
             return $this->parseError($e);
         }
@@ -221,6 +227,8 @@ class Client extends \GuzzleHttp\Client
                 'http_code' => $response->getStatusCode(),
                 'body'      => (string) $response->getBody(),
             ];
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            return $this->clientError($e);
         } catch (\GuzzleHttp\Exception\ServerException $e) {
             return $this->parseError($e);
         }
@@ -245,8 +253,46 @@ class Client extends \GuzzleHttp\Client
                 'http_code' => $response->getStatusCode(),
                 'body'      => (string) $response->getBody(),
             ];
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            return $this->clientError($e);
         } catch (\GuzzleHttp\Exception\ServerException $e) {
             return $this->parseError($e);
         }
+    }
+
+    /**
+     * Parse the java exception that we receive from Smartcall's Tomcat's.
+     *
+     * @param \GuzzleHttp\Exception\ServerException $exception
+     *
+     * @return array
+     */
+    private function clientError(\GuzzleHttp\Exception\ClientException $exception)
+    {
+        $body = (string) $exception->getResponse()->getBody();
+
+        return [
+            'status'    => 'error',
+            'http_code' => $exception->getResponse()->getStatusCode(),
+            'body'      => json_decode($body),
+        ];
+    }
+
+    /**
+     * Parse the java exception that we receive from Smartcall's Tomcat's.
+     *
+     * @param \GuzzleHttp\Exception\ServerException $exception
+     *
+     * @return array
+     */
+    private function parseError(\GuzzleHttp\Exception\ServerException $exception)
+    {
+        $body = (string) $exception->getResponse()->getBody();
+        preg_match('!<p><b>type</b> Exception report</p><p><b>message</b> <u>(.*[^</u>])</u></p><p><b>description</b>!', $body, $matches);
+        return [
+            'status'    => 'error',
+            'http_code' => $exception->getResponse()->getStatusCode(),
+            'body'      => $matches['1'],
+        ];
     }
 }

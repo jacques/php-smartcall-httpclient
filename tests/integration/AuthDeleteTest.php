@@ -50,9 +50,6 @@ class AuthDeleteTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException GuzzleHttp\Exception\ClientException
-     * @expectedExceptionMessage Client error: `DELETE https://www.smartcallesb.co.za:8101/webservice/auth` resulted in a `401 Unauthorized` response:
-     * {"responseDescription":"Authorization denied. Token validation failed","accessToken":null,"tokenType":null,"expiresAt":n (truncated...)
      * @vcr test_auth_token_delete__already_deleted
      */
     public function testAuthDeleteAlreadyDeleted()
@@ -67,8 +64,16 @@ class AuthDeleteTest extends \PHPUnit_Framework_TestCase
 
         self::assertInternalType('array', $response);
         self::assertCount(3, $response);
-        self::assertEquals('ok', $response['status']);
-        self::assertEquals(200, $response['http_code']);
-        self::assertEquals('{"responseDescription":"Token invalidation successful","accessToken":null,"tokenType":null,"expiresAt":null,"scope":null}', $response['body']);
+        self::assertEquals('error', $response['status']);
+        self::assertEquals(401, $response['http_code']);
+        self::assertInstanceOf('\StdClass', $response['body']);
+        $expected = new \StdClass;
+        $expected->responseDescription = 'Authorization denied. Token validation failed';
+        $expected->accessToken = null;
+        $expected->tokenType = null;
+        $expected->expiresAt = null;
+        $expected->scope = null;
+
+        self::assertEquals($expected, $response['body']);
     }
 }
