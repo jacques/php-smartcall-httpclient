@@ -301,11 +301,6 @@ class Client extends \GuzzleHttp\Client
                             $this->options['token']
                         ),
                     ],
-                    'json'    => [
-                        'smartloadId' => $dealerMsisdn,
-                        'startDate'   => $start,
-                        'endDate'     => $end,
-                    ],
                 ]
             );
 
