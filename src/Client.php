@@ -158,23 +158,14 @@ class Client extends \GuzzleHttp\Client
      *
      * @return array
      */
-    public function authFlush($username, $password)
+    public function authFlush($username = null, $password = null)
     {
         try {
             $response = $this->delete(
                 '/webservice/auth/token',
                 [
                     'headers' => [
-                        'Authorization' => sprintf(
-                            'Basic %s',
-                            base64_encode(
-                                sprintf(
-                                    '%s:%s',
-                                    $username,
-                                    $password
-                                )
-                            )
-                        ),
+                        'Authorization' => $this->bearerOrBasic($username, $password),
                     ],
                 ]
             );
@@ -201,23 +192,14 @@ class Client extends \GuzzleHttp\Client
      *
      * @return array
      */
-    public function authToken($username, $password)
+    public function authToken($username = null, $password = null)
     {
         try {
             $response = $this->get(
                 '/webservice/auth/token',
                 [
                     'headers' => [
-                        'Authorization' => sprintf(
-                            'Basic %s',
-                            base64_encode(
-                                sprintf(
-                                    '%s:%s',
-                                    $username,
-                                    $password
-                                )
-                            )
-                        ),
+                        'Authorization' => $this->bearerOrBasic($username, $password),
                     ],
                 ]
             );
@@ -484,5 +466,34 @@ class Client extends \GuzzleHttp\Client
             'http_code' => $exception->getResponse()->getStatusCode(),
             'body'      => $matches['1'],
         ];
+    }
+
+    /**
+     * Use basic authentication header content if bearer token  is not set.
+     *
+     * @param string $username
+     * @param string $password
+     *
+     * @return string
+     */
+    private function bearerOrBasic($username = null, $password = null)
+    {
+        if (is_null($username)) {
+            return sprintf(
+                'Bearer %s',
+                $this->options['token']
+            );
+        }
+
+        return sprintf(
+            'Basic %s',
+            base64_encode(
+                sprintf(
+                    '%s:%s',
+                    $username,
+                    $password
+                )
+            )
+        );
     }
 }
