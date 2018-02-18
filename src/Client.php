@@ -35,7 +35,7 @@ class Client extends \GuzzleHttp\Client
     ];
 
     /**
-     * @param   $options array
+     * @param array $options
      */
     public function __construct($options = [])
     {
