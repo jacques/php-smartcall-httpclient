@@ -570,12 +570,9 @@ class Client extends \GuzzleHttp\Client
     /**
      * Use basic authentication header content if bearer token  is not set.
      *
-     * @param string $username
-     * @param string $password
-     *
      * @return string
      */
-    private function bearerOrBasic($username = null, $password = null)
+    private function bearerOrBasic()
     {
         /**
          * Get the function calling this method.
