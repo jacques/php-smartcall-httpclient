@@ -297,6 +297,7 @@ class Client extends \GuzzleHttp\Client
             return $this->parseError($e);
         }
     }
+
     /**
      * Authenticate and request current day cashup report.
      *
