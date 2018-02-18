@@ -72,32 +72,40 @@ class Client extends \GuzzleHttp\Client
     }
 
     /**
-     * Authenticate and get Bearer token from SmartCall.
+     * Set the password for basic authentication.
      *
-     * @param string $username
-     * @param string $password
+     * @param string $password Password for use with basic authentication
+     */
+    public function setPassword($token)
+    {
+        $this->options['password'] = $password;
+    }
+
+    /**
+     * Set the username for basic authentication.
+     *
+     * @param string $username Username for use with basic authentication
+     */
+    public function setUsername($username)
+    {
+        $this->options['username'] = $username;
+    }
+
+    /**
+     * Authenticate and get Bearer token from SmartCall.
      *
      * @throws Exception
      *
      * @return array
      */
-    public function auth($username, $password)
+    public function auth()
     {
         try {
             $response = $this->post(
                 '/webservice/auth',
                 [
                     'headers' => [
-                        'Authorization' => sprintf(
-                            'Basic %s',
-                            base64_encode(
-                                sprintf(
-                                    '%s:%s',
-                                    $username,
-                                    $password
-                                )
-                            )
-                        ),
+                        'Authorization' => $this->bearerOrBasic(),
                     ],
                 ]
             );
@@ -128,10 +136,7 @@ class Client extends \GuzzleHttp\Client
                 '/webservice/auth',
                 [
                     'headers' => [
-                        'Authorization' => sprintf(
-                            'Bearer %s',
-                            $this->options['token']
-                        ),
+                        'Authorization' => $this->bearerOrBasic(),
                     ],
                 ]
             );
@@ -151,21 +156,18 @@ class Client extends \GuzzleHttp\Client
     /**
      * Authenticate and invalidates all the user allocated tokens.
      *
-     * @param string $username
-     * @param string $password
-     *
      * @throws Exception
      *
      * @return array
      */
-    public function authFlush($username = null, $password = null)
+    public function authFlush()
     {
         try {
             $response = $this->delete(
                 '/webservice/auth/token',
                 [
                     'headers' => [
-                        'Authorization' => $this->bearerOrBasic($username, $password),
+                        'Authorization' => $this->bearerOrBasic(),
                     ],
                 ]
             );
@@ -185,21 +187,18 @@ class Client extends \GuzzleHttp\Client
     /**
      * Authenticate and gets the number of available session tokens.
      *
-     * @param string $username
-     * @param string $password
-     *
      * @throws Exception
      *
      * @return array
      */
-    public function authToken($username = null, $password = null)
+    public function authToken()
     {
         try {
             $response = $this->get(
                 '/webservice/auth/token',
                 [
                     'headers' => [
-                        'Authorization' => $this->bearerOrBasic($username, $password),
+                        'Authorization' => $this->bearerOrBasic(),
                     ],
                 ]
             );
@@ -234,10 +233,7 @@ class Client extends \GuzzleHttp\Client
                 '/webservice/smartload/cashup',
                 [
                     'headers' => [
-                        'Authorization' => sprintf(
-                            'Bearer %s',
-                            $this->options['token']
-                        ),
+                        'Authorization' => $this->bearerOrBasic(),
                     ],
                     'json'    => [
                         'smartloadId' => $dealerMsisdn,
@@ -278,10 +274,7 @@ class Client extends \GuzzleHttp\Client
                 ),
                 [
                     'headers' => [
-                        'Authorization' => sprintf(
-                            'Bearer %s',
-                            $this->options['token']
-                        ),
+                        'Authorization' => $this->bearerOrBasic(),
                     ],
                 ]
             );
@@ -317,10 +310,7 @@ class Client extends \GuzzleHttp\Client
                 ),
                 [
                     'headers' => [
-                        'Authorization' => sprintf(
-                            'Bearer %s',
-                            $this->options['token']
-                        ),
+                        'Authorization' => $this->bearerOrBasic(),
                     ],
                 ]
             );
@@ -356,10 +346,7 @@ class Client extends \GuzzleHttp\Client
                 '/webservice/smartload/fundstransfer',
                 [
                     'headers' => [
-                        'Authorization' => sprintf(
-                            'Bearer %s',
-                            $this->options['token']
-                        ),
+                        'Authorization' => $this->bearerOrBasic(),
                     ],
                     'json' => [
                         'sourceSmartloadId'    => $fromDealerMsisdn,
@@ -399,10 +386,7 @@ class Client extends \GuzzleHttp\Client
                 ),
                 [
                     'headers' => [
-                        'Authorization' => sprintf(
-                            'Bearer %s',
-                            $this->options['token']
-                        ),
+                        'Authorization' => $this->bearerOrBasic(),
                     ],
                 ]
             );
@@ -433,10 +417,7 @@ class Client extends \GuzzleHttp\Client
                 '/webservice/smartload/networks',
                 [
                     'headers' => [
-                        'Authorization' => sprintf(
-                            'Bearer %s',
-                            $this->options['token']
-                        ),
+                        'Authorization' => $this->bearerOrBasic(),
                     ],
                 ]
             );
@@ -496,10 +477,7 @@ class Client extends \GuzzleHttp\Client
                 ),
                 [
                     'headers' => [
-                        'Authorization' => sprintf(
-                            'Bearer %s',
-                            $this->options['token']
-                        ),
+                        'Authorization' => $this->bearerOrBasic(),
                     ],
                 ]
             );
@@ -535,10 +513,7 @@ class Client extends \GuzzleHttp\Client
                 ),
                 [
                     'headers' => [
-                        'Authorization' => sprintf(
-                            'Bearer %s',
-                            $this->options['token']
-                        ),
+                        'Authorization' => $this->bearerOrBasic(),
                     ],
                 ]
             );
@@ -602,7 +577,19 @@ class Client extends \GuzzleHttp\Client
      */
     private function bearerOrBasic($username = null, $password = null)
     {
-        if (is_null($username)) {
+        /**
+         * Get the function calling this method.
+         */
+        $caller = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 2)[1]['function'];
+
+        if (
+            !in_array(
+                $caller,
+                [
+                    'auth',
+                ]
+            )
+        ) {
             return sprintf(
                 'Bearer %s',
                 $this->options['token']
@@ -614,8 +601,8 @@ class Client extends \GuzzleHttp\Client
             base64_encode(
                 sprintf(
                     '%s:%s',
-                    $username,
-                    $password
+                    $this->options['username'],
+                    $this->options['password']
                 )
             )
         );
