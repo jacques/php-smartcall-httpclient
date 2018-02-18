@@ -76,7 +76,7 @@ class Client extends \GuzzleHttp\Client
      *
      * @param string $password Password for use with basic authentication
      */
-    public function setPassword($token)
+    public function setPassword($password)
     {
         $this->options['password'] = $password;
     }
