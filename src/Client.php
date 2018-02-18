@@ -235,6 +235,77 @@ class Client extends \GuzzleHttp\Client
     }
 
     /**
+     * Authenticate and retrieves a list of all available networks.
+     *
+     * @throws Exception
+     *
+     * @return array
+     */
+    public function network($id)
+    {
+        try {
+            $response = $this->get(
+                sprintf(
+                    '/webservice/smartload/networks/%d',
+                    $id
+                ),
+                [
+                    'headers' => [
+                        'Authorization' => sprintf(
+                            'Bearer %s',
+                            $this->options['token']
+                        ),
+                    ],
+                ]
+            );
+
+            return [
+                'status'    => 'ok',
+                'http_code' => $response->getStatusCode(),
+                'body'      => (string) $response->getBody(),
+            ];
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            return $this->clientError($e);
+        } catch (\GuzzleHttp\Exception\ServerException $e) {
+            return $this->parseError($e);
+        }
+    }
+
+    /**
+     * Authenticate and retrieves a list of all available networks.
+     *
+     * @throws Exception
+     *
+     * @return array
+     */
+    public function networks()
+    {
+        try {
+            $response = $this->get(
+                '/webservice/smartload/networks',
+                [
+                    'headers' => [
+                        'Authorization' => sprintf(
+                            'Bearer %s',
+                            $this->options['token']
+                        ),
+                    ],
+                ]
+            );
+
+            return [
+                'status'    => 'ok',
+                'http_code' => $response->getStatusCode(),
+                'body'      => (string) $response->getBody(),
+            ];
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            return $this->clientError($e);
+        } catch (\GuzzleHttp\Exception\ServerException $e) {
+            return $this->parseError($e);
+        }
+    }
+
+    /**
      * Test SmartCall is responding.
      *
      * @throws Exception
@@ -246,6 +317,43 @@ class Client extends \GuzzleHttp\Client
         try {
             $response = $this->get(
                 '/webservice/test/ping'
+            );
+
+            return [
+                'status'    => 'ok',
+                'http_code' => $response->getStatusCode(),
+                'body'      => (string) $response->getBody(),
+            ];
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            return $this->clientError($e);
+        } catch (\GuzzleHttp\Exception\ServerException $e) {
+            return $this->parseError($e);
+        }
+    }
+
+    /**
+     * Authenticate and retrieves a list of all available networks.
+     *
+     * @throws Exception
+     *
+     * @return array
+     */
+    public function products($id)
+    {
+        try {
+            $response = $this->get(
+                sprintf(
+                    '/webservice/smartload/products/%d',
+                    $id
+                ),
+                [
+                    'headers' => [
+                        'Authorization' => sprintf(
+                            'Bearer %s',
+                            $this->options['token']
+                        ),
+                    ],
+                ]
             );
 
             return [
