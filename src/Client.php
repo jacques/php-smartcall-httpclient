@@ -23,7 +23,7 @@ class Client extends \GuzzleHttp\Client
      * Defaults to expecting that Apache Tomcat runs on port 8080 on localhost
      * (127.0.0.1).
      *
-     * @var array[]
+     * @var array
      */
     protected $options = [
         'scheme'   => 'https',
@@ -260,6 +260,44 @@ class Client extends \GuzzleHttp\Client
     }
 
     /**
+     * Authenticate and retrieves the dealer balance in Rands.
+     *
+     * @param string $dealerMsisdn
+     *
+     * @throws Exception
+     *
+     * @return array
+     */
+    public function balance($dealerMsisdn)
+    {
+        try {
+            $response = $this->get(
+                sprintf(
+                    '/webservice/smartload/balance/%s',
+                    $dealerMsisdn
+                ),
+                [
+                    'headers' => [
+                        'Authorization' => sprintf(
+                            'Bearer %s',
+                            $this->options['token']
+                        ),
+                    ],
+                ]
+            );
+
+            return [
+                'status'    => 'ok',
+                'http_code' => $response->getStatusCode(),
+                'body'      => (string) $response->getBody(),
+            ];
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            return $this->clientError($e);
+        } catch (\GuzzleHttp\Exception\ServerException $e) {
+            return $this->parseError($e);
+        }
+    }
+    /**
      * Authenticate and request current day cashup report.
      *
      * @param string $dealerMsisdn
@@ -282,6 +320,51 @@ class Client extends \GuzzleHttp\Client
                             'Bearer %s',
                             $this->options['token']
                         ),
+                    ],
+                ]
+            );
+
+            return [
+                'status'    => 'ok',
+                'http_code' => $response->getStatusCode(),
+                'body'      => (string) $response->getBody(),
+            ];
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            return $this->clientError($e);
+        } catch (\GuzzleHttp\Exception\ServerException $e) {
+            return $this->parseError($e);
+        }
+    }
+
+    /**
+     * Authenticate and request to transfer funds from one Smartload account to another.
+     *
+     * @param string $fromDealerMsisdn
+     * @param string $toDealerMsisdn
+     * @param string $amount
+     * @param string $sendSms
+     *
+     * @throws Exception
+     *
+     * @return array
+     */
+    public function fundstransfer($fromDealerMsisdn, $toDealerMsisdn, $amount, $sendSms)
+    {
+        try {
+            $response = $this->post(
+                '/webservice/smartload/fundstransfer',
+                [
+                    'headers' => [
+                        'Authorization' => sprintf(
+                            'Bearer %s',
+                            $this->options['token']
+                        ),
+                    ],
+                    'json' => [
+                        'sourceSmartloadId'    => $fromDealerMsisdn,
+                        'recipientSmartloadId' => $toDealerMsisdn,
+                        'amount'               => $amount,
+                        'sendSms'              => $sendSms,
                     ],
                 ]
             );
@@ -409,6 +492,45 @@ class Client extends \GuzzleHttp\Client
                 sprintf(
                     '/webservice/smartload/products/%d',
                     $id
+                ),
+                [
+                    'headers' => [
+                        'Authorization' => sprintf(
+                            'Bearer %s',
+                            $this->options['token']
+                        ),
+                    ],
+                ]
+            );
+
+            return [
+                'status'    => 'ok',
+                'http_code' => $response->getStatusCode(),
+                'body'      => (string) $response->getBody(),
+            ];
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            return $this->clientError($e);
+        } catch (\GuzzleHttp\Exception\ServerException $e) {
+            return $this->parseError($e);
+        }
+    }
+
+    /**
+     * Authenticate and checks if the provided ID (MSISDN) is registered with Smartload.
+     *
+     * @param string $dealerMsisdn
+     *
+     * @throws Exception
+     *
+     * @return array
+     */
+    public function registered($dealerMsisdn)
+    {
+        try {
+            $response = $this->get(
+                sprintf(
+                    '/webservice/smartload/registered/%s',
+                    $dealerMsisdn
                 ),
                 [
                     'headers' => [
