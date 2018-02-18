@@ -435,7 +435,7 @@ class Client extends \GuzzleHttp\Client
     /**
      * Parse the java exception that we receive from Smartcall's Tomcat's.
      *
-     * @param \GuzzleHttp\Exception\ServerException $exception
+     * @param \GuzzleHttp\Exception\ClientException $exception
      *
      * @return array
      */
