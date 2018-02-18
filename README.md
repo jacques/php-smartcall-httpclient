@@ -4,7 +4,7 @@
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jacques/php-smartcall-httpclient/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jacques/php-smartcall-httpclient/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/jacques/php-smartcall-httpclient/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/jacques/php-smartcall-httpclient/?branch=master)
-
+[![Build Status](https://scrutinizer-ci.com/g/jacques/php-smartcall-httpclient/badges/build.png?b=master)](https://scrutinizer-ci.com/g/jacques/php-smartcall-httpclient/build-status/master)
 
 Consumes the SmartCall Restful API instead of using the SmartCall Restful Proxy and
 requiring to having instances running java and tomcat in order to vend airtime.
