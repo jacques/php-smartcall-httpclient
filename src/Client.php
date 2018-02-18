@@ -235,6 +235,93 @@ class Client extends \GuzzleHttp\Client
     }
 
     /**
+     * Authenticate and request period based cashup reports.
+     *
+     * @param string $dealerMsisdn
+     * @param string $start
+     * @param string $end
+     *
+     * @throws Exception
+     *
+     * @return array
+     */
+    public function cashup($dealerMsisdn, $start, $end)
+    {
+        try {
+            $response = $this->post(
+                '/webservice/smartload/cashup',
+                [
+                    'headers' => [
+                        'Authorization' => sprintf(
+                            'Bearer %s',
+                            $this->options['token']
+                        ),
+                    ],
+                    'json'    => [
+                        'smartloadId' => $dealerMsisdn,
+                        'startDate'   => $start,
+                        'endDate'     => $end,
+                    ],
+                ]
+            );
+
+            return [
+                'status'    => 'ok',
+                'http_code' => $response->getStatusCode(),
+                'body'      => (string) $response->getBody(),
+            ];
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            return $this->clientError($e);
+        } catch (\GuzzleHttp\Exception\ServerException $e) {
+            return $this->parseError($e);
+        }
+    }
+
+    /**
+     * Authenticate and request current day cashup report.
+     *
+     * @param string $dealerMsisdn
+     *
+     * @throws Exception
+     *
+     * @return array
+     */
+    public function cashupToday($dealerMsisdn)
+    {
+        try {
+            $response = $this->get(
+                sprintf(
+                    '/webservice/smartload/cashup/%s',
+                    $dealerMsisdn
+                ),
+                [
+                    'headers' => [
+                        'Authorization' => sprintf(
+                            'Bearer %s',
+                            $this->options['token']
+                        ),
+                    ],
+                    'json'    => [
+                        'smartloadId' => $dealerMsisdn,
+                        'startDate'   => $start,
+                        'endDate'     => $end,
+                    ],
+                ]
+            );
+
+            return [
+                'status'    => 'ok',
+                'http_code' => $response->getStatusCode(),
+                'body'      => (string) $response->getBody(),
+            ];
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            return $this->clientError($e);
+        } catch (\GuzzleHttp\Exception\ServerException $e) {
+            return $this->parseError($e);
+        }
+    }
+
+    /**
      * Authenticate and retrieves a list of all available networks.
      *
      * @throws Exception
