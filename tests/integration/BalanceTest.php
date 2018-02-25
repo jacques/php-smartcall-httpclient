@@ -52,6 +52,28 @@ class BalanceTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @vcr test_balance_27829677746
+     */
+    public function testBalance27829677746()
+    {
+        $client = new Client([
+            'scheme'   => 'https',
+            'hostname' => 'www.smartcallesb.co.za',
+            'port'     => '8101',
+        ]);
+        $response = $client->setBearerToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJTbWFydGNhbGwgUkVTVGZ1bCBXZWJzZXJ2aWNlIiwibmJmIjoxNTE5NTU1OTE5LCJjbGllbnRVc2VybmFtZSI6InRhcCIsImNsaWVudElQIjoiMTY5LjEuMTY4LjE0MSIsImlzcyI6InNtYXJ0Y2FsbC5jby56YSIsImV4cCI6MTUxOTY0MjMxOSwiaWF0IjoxNTE5NTU1OTE5fQ._sQJ99CKM0xrESpe9bneiQP7B_UJEg8SHB9rjwRqJFI');
+        $response = $client->balance('27829677746');
+
+        self::assertInternalType('array', $response);
+        self::assertCount(3, $response);
+        self::assertEquals('ok', $response['status']);
+        self::assertEquals(200, $response['http_code']);
+        $expected = '{"error":null,"responseCode":"SUCCESS","balance":110000.0000}';
+
+        self::assertEquals($expected, $response['body']);
+    }
+
+    /**
      * @vcr test_balance_27820000000__not_our_msisdn
      */
     public function testBalanaceNotOurDealerMsisdn()
