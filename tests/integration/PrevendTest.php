@@ -72,7 +72,7 @@ class PrevendTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @vcr test_recharge_27820000000__invalid_token
+     * @vcr test_prevend_27820000000__invalid_token
      */
     public function testPrevendInvalidToken()
     {

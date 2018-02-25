@@ -1,0 +1,33 @@
+[{
+    "request": {
+        "method": "POST",
+        "url": "https:\/\/www.smartcallesb.co.za:8101\/webservice\/smartload\/prevend",
+        "headers": {
+            "Host": "www.smartcallesb.co.za:8101",
+            "Expect": null,
+            "Accept-Encoding": null,
+            "User-Agent": "SmartcallRestfulAPIClient-PHP\/0.0.1 GuzzleHttp\/6.2.1 curl\/7.55.1 PHP\/7.1.1",
+            "Content-Type": "application\/json",
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJTbWFydGNhbGwgUkVTVGZ1bCBXZWJzZXJ2aWNlIiwibmJmIjoxNTE4ODcyMzEzLCJjbGllbnRVc2VybmFtZSI6InRhcCIsImNsaWVudElQIjoiNDEuNzkuNzcuMjMiLCJpc3MiOiJzbWFydGNhbGwuY28uemEiLCJleHAiOjE1MTg5NTg3MTMsImlhdCI6MTUxODg3MjMxM30.Gzvlzdzu-EEIy-swibi-K6yRBu-IlBoNHXymxOYquwA",
+            "Accept": null
+        },
+        "body": "{\"smartloadId\":\"27820000000\",\"clientReference\":\"e309d658-dc45-4968-9c86-0867dae46e33\",\"smsRecipientMsisdn\":\"27831234567\",\"deviceId\":\"27831234567\",\"productId\":22,\"amount\":100,\"pinless\":true,\"sendSms\":true}"
+    },
+    "response": {
+        "status": {
+            "http_version": "1.1",
+            "code": "401",
+            "message": "Unauthorized"
+        },
+        "headers": {
+            "Server": "Apache-Coyote\/1.1",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, DELETE, PUT",
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Content-Type": "application\/json",
+            "Transfer-Encoding": "chunked",
+            "Date": "Sun, 25 Feb 2018 22:01:53 GMT"
+        },
+        "body": "{\"responseDescription\":\"Authorization denied. Token validation failed\",\"accessToken\":null,\"tokenType\":null,\"expiresAt\":null,\"scope\":null}"
+    }
+}]
