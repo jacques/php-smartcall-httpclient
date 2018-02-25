@@ -51,6 +51,45 @@ trait SmartLoad
     }
 
     /**
+     * Authenticate and request to cancel a previous recharge request. Will only
+     * succeed if the recharge has not been successfully submitted to the network.
+     *
+     * @param string $dealerMsisdn
+     * @param string $clientReference
+     *
+     * @throws Exception
+     *
+     * @return array
+     */
+    public function cancelRecharge($dealerMsisdn, $clientReference)
+    {
+        try {
+            $response = $this->delete(
+                sprintf(
+                    '/webservice/smartload/recharges/%s/%s',
+                    $dealerMsisdn,
+                    $clientReference
+                ),
+                [
+                    'headers' => [
+                        'Authorization' => $this->bearerOrBasic(),
+                    ],
+                ]
+            );
+
+            return [
+                'status'    => 'ok',
+                'http_code' => $response->getStatusCode(),
+                'body'      => (string) $response->getBody(),
+            ];
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            return $this->clientError($e);
+        } catch (\GuzzleHttp\Exception\ServerException $e) {
+            return $this->parseError($e);
+        }
+    }
+
+    /**
      * Authenticate and request period based cashup reports.
      *
      * @param string $dealerMsisdn
@@ -314,6 +353,52 @@ trait SmartLoad
                 [
                     'headers' => [
                         'Authorization' => $this->bearerOrBasic(),
+                    ],
+                ]
+            );
+
+            return [
+                'status'    => 'ok',
+                'http_code' => $response->getStatusCode(),
+                'body'      => (string) $response->getBody(),
+            ];
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            return $this->clientError($e);
+        } catch (\GuzzleHttp\Exception\ServerException $e) {
+            return $this->parseError($e);
+        }
+    }
+
+    /**
+     * Authenticate and recharge request.
+     *
+     * @param string $dealerMsisdn
+     * @param string $clientReference
+     * @param string $smsRecipientMsisdn
+     * @param string $deviceId
+     * @param int    $productId
+     * @param int    $amount
+     * @param bool   $pinless
+     * @param bool   $sendSms
+     */
+    public function recharge($dealerMsisdn, $clientReference, $smsRecipientMsisdn, $deviceId, $productId, $amount, $pinless, $sendSms)
+    {
+        try {
+            $response = $this->post(
+                '/webservice/smartload/recharges',
+                [
+                    'headers' => [
+                        'Authorization' => $this->bearerOrBasic(),
+                    ],
+                    'json' => [
+                        'smartloadId'        => $dealerMsisdn,
+                        'clientReference'    => $clientReference,
+                        'smsRecipientMsisdn' => $smsRecipientMsisdn,
+                        'deviceId'           => $deviceId,
+                        'productId'          => $productId,
+                        'amount'             => $amount,
+                        'pinless'            => $pinless,
+                        'sendSms'            => $sendSms,
                     ],
                 ]
             );
