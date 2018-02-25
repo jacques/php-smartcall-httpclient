@@ -51,6 +51,27 @@ class PrevendTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @vcr test_prevend_27813272161_duplicate_prevend
+     */
+    public function testPrevendDuplicatePrevend()
+    {
+        $client = new Client([
+            'scheme'   => 'https',
+            'hostname' => 'www.smartcallesb.co.za',
+            'port'     => '8101',
+        ]);
+        $response = $client->setBearerToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJTbWFydGNhbGwgUkVTVGZ1bCBXZWJzZXJ2aWNlIiwibmJmIjoxNTE5NTU1OTE5LCJjbGllbnRVc2VybmFtZSI6InRhcCIsImNsaWVudElQIjoiMTY5LjEuMTY4LjE0MSIsImlzcyI6InNtYXJ0Y2FsbC5jby56YSIsImV4cCI6MTUxOTY0MjMxOSwiaWF0IjoxNTE5NTU1OTE5fQ._sQJ99CKM0xrESpe9bneiQP7B_UJEg8SHB9rjwRqJFI');
+        $response = $client->prevend('27813272161', '8184e809-7cce-4395-b782-5fd4045ce29d', '27831234567', '27831234567', 22, 100, true, true);
+
+        self::assertInternalType('array', $response);
+        self::assertCount(3, $response);
+        self::assertEquals('ok', $response['status']);
+        self::assertEquals(200, $response['http_code']);
+        $expected = '{"responseCode":"SYS_ERROR","message":"Violation of PRIMARY KEY constraint \'PK_VOD_IN_PREVEND\'. Cannot insert duplicate key in object \'dbo.VOD_IN_PREVEND\'. The duplicate key value is (8184e809-7cce-4395-b782-5fd4045ce29d, 1722963)."}';
+        self::assertEquals($expected, $response['body']);
+    }
+
+    /**
      * @vcr test_recharge_27820000000__invalid_token
      */
     public function testPrevendInvalidToken()
