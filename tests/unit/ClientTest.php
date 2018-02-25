@@ -99,4 +99,68 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         ];
         self::assertAttributeEquals($expected, 'options', $client);
     }
+
+    public function testSetPassword()
+    {
+        $client = new Client([
+            'scheme'   => 'https',
+            'hostname' => 'www.smartcallesb.co.za',
+            'port'     => '8101',
+            'token'    => 'bearer-token-test',
+            'username' => 'joesoap',
+        ]);
+
+        self::assertInstanceOf('Jacques\Smartcall\HttpClient\Client', $client);
+        $expected = [
+            'scheme'   => 'https',
+            'hostname' => 'www.smartcallesb.co.za',
+            'port'     => '8101',
+            'token'    => 'bearer-token-test',
+            'username' => 'joesoap',
+            'password' => null,
+        ];
+        self::assertAttributeEquals($expected, 'options', $client);
+        $client->setPassword('sw0rdf1sh');
+        $expected = [
+            'scheme'   => 'https',
+            'hostname' => 'www.smartcallesb.co.za',
+            'port'     => '8101',
+            'token'    => 'bearer-token-test',
+            'username' => 'joesoap',
+            'password' => 'sw0rdf1sh',
+        ];
+        self::assertAttributeEquals($expected, 'options', $client);
+    }
+
+    public function testSetUsername()
+    {
+        $client = new Client([
+            'scheme'   => 'https',
+            'hostname' => 'www.smartcallesb.co.za',
+            'port'     => '8101',
+            'token'    => 'bearer-token-test',
+            'password' => 'sw0rdf1sh',
+        ]);
+
+        self::assertInstanceOf('Jacques\Smartcall\HttpClient\Client', $client);
+        $expected = [
+            'scheme'   => 'https',
+            'hostname' => 'www.smartcallesb.co.za',
+            'port'     => '8101',
+            'token'    => 'bearer-token-test',
+            'username' => null,
+            'password' => 'sw0rdf1sh',
+        ];
+        self::assertAttributeEquals($expected, 'options', $client);
+        $client->setUsername('joesoap');
+        $expected = [
+            'scheme'   => 'https',
+            'hostname' => 'www.smartcallesb.co.za',
+            'port'     => '8101',
+            'token'    => 'bearer-token-test',
+            'username' => 'joesoap',
+            'password' => 'sw0rdf1sh',
+        ];
+        self::assertAttributeEquals($expected, 'options', $client);
+    }
 }
