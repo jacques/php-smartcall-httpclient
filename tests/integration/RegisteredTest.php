@@ -11,7 +11,7 @@ namespace Jacques\Smartcall\HttpClient\Tests\Integration;
 
 use Jacques\Smartcall\HttpClient\Client;
 
-class RegistratedTest extends \PHPUnit_Framework_TestCase
+class RegisteredTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -89,7 +89,7 @@ class RegistratedTest extends \PHPUnit_Framework_TestCase
         self::assertEquals('error', $response['status']);
         self::assertEquals(401, $response['http_code']);
         self::assertInstanceOf('\StdClass', $response['body']);
-        $expected = new \StdClass;
+        $expected = new \StdClass();
         $expected->responseDescription = 'Authorization denied. Token validation failed';
         $expected->accessToken = null;
         $expected->tokenType = null;

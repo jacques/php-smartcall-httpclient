@@ -89,7 +89,7 @@ class FundstransferTest extends \PHPUnit_Framework_TestCase
         self::assertEquals('error', $response['status']);
         self::assertEquals(401, $response['http_code']);
         self::assertInstanceOf('\StdClass', $response['body']);
-        $expected = new \StdClass;
+        $expected = new \StdClass();
         $expected->responseDescription = 'Authorization denied. Token validation failed';
         $expected->accessToken = null;
         $expected->tokenType = null;
