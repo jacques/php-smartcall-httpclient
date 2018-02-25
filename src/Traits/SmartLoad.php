@@ -240,23 +240,22 @@ trait SmartLoad
      * @param string $clientReference
      * @param string $smsRecipientMsisdn
      * @param string $deviceId
-     * @param integer $productId
-     * @param integer $amount
-     * @param boolean $pinless
-     * @param boolean $sendSms
+     * @param int    $productId
+     * @param int    $amount
+     * @param bool   $pinless
+     * @param bool   $sendSms
      *
      *
-{
-  "smartloadId": "27821234567",
-  "clientReference": "abc123",
-  "smsRecipientMsisdn": "27821234567",
-  "deviceId": "27821234567",
-  "productId": 62,
-  "amount": 12,
-  "pinless": true,
-  "sendSms": true
-}
-
+     * {
+     * "smartloadId": "27821234567",
+     * "clientReference": "abc123",
+     * "smsRecipientMsisdn": "27821234567",
+     * "deviceId": "27821234567",
+     * "productId": 62,
+     * "amount": 12,
+     * "pinless": true,
+     * "sendSms": true
+     * }
      */
     public function prevend()
     {
@@ -298,7 +297,7 @@ trait SmartLoad
     /**
      * Authenticate and retrieves a list of all available networks.
      *
-     * @param integer $id
+     * @param int $id
      *
      * @throws Exception
      *
