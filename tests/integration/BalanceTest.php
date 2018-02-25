@@ -69,7 +69,7 @@ class BalanceTest extends \PHPUnit_Framework_TestCase
         self::assertEquals('error', $response['status']);
         self::assertEquals(403, $response['http_code']);
         self::assertInstanceOf('\StdClass', $response['body']);
-        $expected = new \StdClass;
+        $expected = new \StdClass();
         $expected->code = 400;
         $expected->message = 'The supplied Smartload ID is not registered to your account';
 
@@ -94,7 +94,7 @@ class BalanceTest extends \PHPUnit_Framework_TestCase
         self::assertEquals('error', $response['status']);
         self::assertEquals(401, $response['http_code']);
         self::assertInstanceOf('\StdClass', $response['body']);
-        $expected = new \StdClass;
+        $expected = new \StdClass();
         $expected->responseDescription = 'Authorization denied. Token validation failed';
         $expected->accessToken = null;
         $expected->tokenType = null;
