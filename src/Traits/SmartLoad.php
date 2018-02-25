@@ -283,40 +283,25 @@ trait SmartLoad
      * @param int    $amount
      * @param bool   $pinless
      * @param bool   $sendSms
-     *
-     *
-     * {
-     * "smartloadId": "27821234567",
-     * "clientReference": "abc123",
-     * "smsRecipientMsisdn": "27821234567",
-     * "deviceId": "27821234567",
-     * "productId": 62,
-     * "amount": 12,
-     * "pinless": true,
-     * "sendSms": true
-     * }
      */
-    public function prevend()
+    public function prevend($dealerMsisdn, $clientReference, $smsRecipientMsisdn, $deviceId, $productId, $amount, $pinless, $sendSms)
     {
         try {
             $response = $this->post(
-                sprintf(
-                    '/webservice/smartload/products/%d',
-                    $id
-                ),
+                '/webservice/smartload/prevend',
                 [
                     'headers' => [
                         'Authorization' => $this->bearerOrBasic(),
                     ],
                     'json' => [
-                        'smartloadId'        => '',
-                        'clientReference'    => '',
-                        'smsRecipientMsisdn' => '',
-                        'deviceId'           => '',
-                        'productId'          => '',
-                        'amount'             => '',
-                        'pinless'            => '',
-                        'sendSms'            => '',
+                        'smartloadId'        => $dealerMsisdn,
+                        'clientReference'    => $clientReference,
+                        'smsRecipientMsisdn' => $smsRecipientMsisdn,
+                        'deviceId'           => $deviceId,
+                        'productId'          => $productId,
+                        'amount'             => $amount,
+                        'pinless'            => $pinless,
+                        'sendSms'            => $sendSms,
                     ],
                 ]
             );
@@ -431,6 +416,41 @@ trait SmartLoad
                 sprintf(
                     '/webservice/smartload/registered/%s',
                     $dealerMsisdn
+                ),
+                [
+                    'headers' => [
+                        'Authorization' => $this->bearerOrBasic(),
+                    ],
+                ]
+            );
+
+            return [
+                'status'    => 'ok',
+                'http_code' => $response->getStatusCode(),
+                'body'      => (string) $response->getBody(),
+            ];
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            return $this->clientError($e);
+        } catch (\GuzzleHttp\Exception\ServerException $e) {
+            return $this->parseError($e);
+        }
+    }
+
+    /**
+     * Authenticate and retrieves the details of the transaction that was performed
+     * by the dealer using the Client reference number.
+     *
+     * @param string $dealerMsisdn
+     * @param string $clientReference
+     */
+    public function transaction($dealerMsisdn, $clientReference)
+    {
+        try {
+            $response = $this->get(
+                sprintf(
+                    '/webservice/smartload/recharges/%s/%s',
+                    $dealerMsisdn,
+                    $clientReference
                 ),
                 [
                     'headers' => [
