@@ -210,17 +210,19 @@ trait SmartLoad
     /**
      * Authenticate and retrieves a list of all available networks.
      *
+     * @param int $networkId
+     *
      * @throws Exception
      *
      * @return array
      */
-    public function network($id)
+    public function network($networkId)
     {
         try {
             $response = $this->get(
                 sprintf(
                     '/webservice/smartload/networks/%d',
-                    $id
+                    $networkId
                 ),
                 [
                     'headers' => [
@@ -319,21 +321,21 @@ trait SmartLoad
     }
 
     /**
-     * Authenticate and retrieves a list of all available networks.
+     * Authenticate and retrieves the product information for the specified product id.
      *
-     * @param int $id
+     * @param int $productId
      *
      * @throws Exception
      *
      * @return array
      */
-    public function products($id)
+    public function products($productId)
     {
         try {
             $response = $this->get(
                 sprintf(
                     '/webservice/smartload/products/%d',
-                    $id
+                    $productId
                 ),
                 [
                     'headers' => [
