@@ -1,0 +1,33 @@
+[{
+    "request": {
+        "method": "GET",
+        "url": "https:\/\/www.smartcallesb.co.za:8101\/webservice\/smartload\/registered\/27829677746",
+        "headers": {
+            "Host": "www.smartcallesb.co.za:8101",
+            "Accept-Encoding": null,
+            "User-Agent": "SmartcallRestfulAPIClient-PHP\/0.0.1 GuzzleHttp\/6.2.1 curl\/7.55.1 PHP\/7.1.1",
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJTbWFydGNhbGwgUkVTVGZ1bCBXZWJzZXJ2aWNlIiwibmJmIjoxNTE5NTU1OTE5LCJjbGllbnRVc2VybmFtZSI6InRhcCIsImNsaWVudElQIjoiMTY5LjEuMTY4LjE0MSIsImlzcyI6InNtYXJ0Y2FsbC5jby56YSIsImV4cCI6MTUxOTY0MjMxOSwiaWF0IjoxNTE5NTU1OTE5fQ._sQJ99CKM0xrESpe9bneiQP7B_UJEg8SHB9rjwRqJFI",
+            "Accept": null
+        }
+    },
+    "response": {
+        "status": {
+            "http_version": "1.1",
+            "code": "200",
+            "message": "OK"
+        },
+        "headers": {
+            "Server": "Apache-Coyote\/1.1",
+            "Pragma": "No-cache",
+            "Cache-Control": "no-cache",
+            "Expires": "Thu, 01 Jan 1970 02:00:00 SAST",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, DELETE, PUT",
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Content-Type": "application\/json",
+            "Transfer-Encoding": "chunked",
+            "Date": "Sun, 25 Feb 2018 16:39:53 GMT"
+        },
+        "body": "{\"error\":null,\"responseCode\":\"SUCCESS\",\"registered\":true}"
+    }
+}]
