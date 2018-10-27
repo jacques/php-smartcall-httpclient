@@ -6,8 +6,8 @@
 [![Code Coverage](https://scrutinizer-ci.com/g/jacques/php-smartcall-httpclient/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/jacques/php-smartcall-httpclient/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/jacques/php-smartcall-httpclient/badges/build.png?b=master)](https://scrutinizer-ci.com/g/jacques/php-smartcall-httpclient/build-status/master)
 
-Consumes the SmartCall Restful API instead of using the SmartCall Restful Proxy and
-requiring to having instances running java and tomcat in order to vend airtime.
+> Consumes the SmartCall Restful API instead of using the SmartCall Restful Proxy and
+> requiring to having instances running java and tomcat in order to vend airtime.
 
 ---
 
@@ -16,7 +16,7 @@ requiring to having instances running java and tomcat in order to vend airtime.
 ## Installation
 
 ```
-$ composer require jacques/php-smartcall-httpclient
+$ composer require jacques/php-smartcall-httpclient:dev-master
 ```
 
 ```
@@ -26,6 +26,12 @@ $ composer require jacques/php-smartcall-httpclient
     }
 }
 ```
+
+---
+
+## Authors
+
+ * Jacques Marneweck <<jacques@siberia.co.za>>
 
 ---
 
