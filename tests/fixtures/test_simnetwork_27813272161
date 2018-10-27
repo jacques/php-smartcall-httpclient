@@ -1,0 +1,33 @@
+[{
+    "request": {
+        "method": "GET",
+        "url": "https:\/\/www.smartcallesb.co.za:8101\/webservice\/utilities\/simnetwork\/27813272161",
+        "headers": {
+            "Host": "www.smartcallesb.co.za:8101",
+            "Accept-Encoding": null,
+            "User-Agent": "SmartcallRestfulAPIClient-PHP\/0.0.1 GuzzleHttp\/6.3.3 curl\/7.43.0 PHP\/7.2.9",
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJTbWFydGNhbGwgUkVTVGZ1bCBXZWJzZXJ2aWNlIiwibmJmIjoxNTQwNjI1NzAxLCJjbGllbnRVc2VybmFtZSI6InRhcCIsImNsaWVudElQIjoiMTA1LjIyOC4yMC42MiIsImlzcyI6InNtYXJ0Y2FsbC5jby56YSIsImV4cCI6MTU0MDcxMjEwMSwiaWF0IjoxNTQwNjI1NzAxfQ._gDSG3aBe43Sn5VM8IMWPawWvZfYlrPJmxZT2VJYcDk",
+            "Accept": null
+        }
+    },
+    "response": {
+        "status": {
+            "http_version": "1.1",
+            "code": "200",
+            "message": "OK"
+        },
+        "headers": {
+            "Server": "Apache-Coyote\/1.1",
+            "Pragma": "No-cache",
+            "Cache-Control": "no-cache",
+            "Expires": "Thu, 01 Jan 1970 02:00:00 SAST",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, DELETE, PUT",
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Content-Type": "application\/json",
+            "Transfer-Encoding": "chunked",
+            "Date": "Sat, 27 Oct 2018 07:46:51 GMT"
+        },
+        "body": "{\"msisdn\":\"27813272161\",\"queryDate\":\"2018-10-27 09:46:51\",\"ported\":true,\"network\":\"Telkom Mobile\",\"error\":null}"
+    }
+}]

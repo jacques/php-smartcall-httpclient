@@ -222,6 +222,42 @@ class Client extends \GuzzleHttp\Client
     }
 
     /**
+     * Gets the mobile network on which the SIM is connected.
+     *
+     * @param string $msisdn
+     *
+     * @throws Exception
+     *
+     * @return array
+     */
+    public function simnetwork($msisdn)
+    {
+        try {
+            $response = $this->get(
+                sprintf(
+                    '/webservice/utilities/simnetwork/%d',
+                    $msisdn
+                ),
+                [
+                    'headers' => [
+                        'Authorization' => $this->bearerOrBasic(),
+                    ],
+                ]
+            );
+
+            return [
+                'status'    => 'ok',
+                'http_code' => $response->getStatusCode(),
+                'body'      => (string) $response->getBody(),
+            ];
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            return $this->clientError($e);
+        } catch (\GuzzleHttp\Exception\ServerException $e) {
+            return $this->parseError($e);
+        }
+    }
+
+    /**
      * Test SmartCall is responding.
      *
      * @throws Exception
