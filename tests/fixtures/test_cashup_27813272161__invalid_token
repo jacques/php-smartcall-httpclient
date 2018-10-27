@@ -1,0 +1,33 @@
+[{
+    "request": {
+        "method": "POST",
+        "url": "https:\/\/www.smartcallesb.co.za:8101\/webservice\/smartload\/cashup",
+        "headers": {
+            "Host": "www.smartcallesb.co.za:8101",
+            "Expect": null,
+            "Accept-Encoding": null,
+            "User-Agent": "SmartcallRestfulAPIClient-PHP\/0.0.1 GuzzleHttp\/6.3.3 curl\/7.43.0 PHP\/7.2.9",
+            "Content-Type": "application\/json",
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJTbWFydGNhbGwgUkVTVGZ1bCBXZWJzZXJ2aWNlIiwibmJmIjoxNTE4ODcyMzEzLCJjbGllbnRVc2VybmFtZSI6InRhcCIsImNsaWVudElQIjoiNDEuNzkuNzcuMjMiLCJpc3MiOiJzbWFydGNhbGwuY28uemEiLCJleHAiOjE1MTg5NTg3MTMsImlhdCI6MTUxODg3MjMxM30.Gzvlzdzu-EEIy-swibi-K6yRBu-IlBoNHXymxOYquwA",
+            "Accept": null
+        },
+        "body": "{\"smartloadId\":\"27813272161\",\"startDate\":\"2018-10-01\",\"endDate\":\"2018-10-27\"}"
+    },
+    "response": {
+        "status": {
+            "http_version": "1.1",
+            "code": "401",
+            "message": "Unauthorized"
+        },
+        "headers": {
+            "Server": "Apache-Coyote\/1.1",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, DELETE, PUT",
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Content-Type": "application\/json",
+            "Transfer-Encoding": "chunked",
+            "Date": "Sat, 27 Oct 2018 08:49:19 GMT"
+        },
+        "body": "{\"responseDescription\":\"Authorization denied. Token validation failed\",\"accessToken\":null,\"tokenType\":null,\"expiresAt\":null,\"scope\":null}"
+    }
+}]
