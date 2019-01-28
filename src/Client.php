@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * SmartCall Restful API (v3) HTTP Client.
  *
@@ -6,7 +6,7 @@
  * is taking place.  It will be refactored in the near future.
  *
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2017-2018 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2017-2019 Jacques Marneweck.  All rights strictly reserved.
  * @license   MIT
  */
 
@@ -311,12 +311,12 @@ class Client extends \GuzzleHttp\Client
     private function parseError(\GuzzleHttp\Exception\ServerException $exception)
     {
         $body = (string) $exception->getResponse()->getBody();
-        preg_match('!<p><b>type</b> Exception report</p><p><b>message</b> <u>(.*[^</u>])</u></p><p><b>description</b>!', $body, $matches);
+        preg_match('/<p><b>(JBWEB\d{6}): type<\/b> (JBWEB\d{6}): Exception report<\/p><p><b>(JBWEB\d{6}): message<\/b> <u>(.*[^<\/u>])<\/u><\/p><p><b>(JBWEB\d{6}): description<\/b> <u>(.+[^<\/u>])<\/u><\/p>/ims', $body, $matches);
 
         return [
             'status'    => 'error',
             'http_code' => $exception->getResponse()->getStatusCode(),
-            'body'      => $matches['1'],
+            'body'      => $matches['6'],
         ];
     }
 

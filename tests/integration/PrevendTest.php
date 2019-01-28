@@ -1,9 +1,9 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * SmartCall Restful API (v3) HTTP Client.
  *
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2017-2018 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2017-2019 Jacques Marneweck.  All rights strictly reserved.
  * @license   MIT
  */
 
@@ -11,7 +11,7 @@ namespace Jacques\Smartcall\HttpClient\Tests\Integration;
 
 use Jacques\Smartcall\HttpClient\Client;
 
-class PrevendTest extends \PHPUnit_Framework_TestCase
+class PrevendTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Sets up the fixture, for example, opens a network connection.

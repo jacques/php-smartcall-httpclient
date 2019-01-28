@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * SmartCall Restful API (v3) HTTP Client.
  *
@@ -6,7 +6,7 @@
  * is taking place.  It will be refactored in the near future.
  *
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2017-2018 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2017-2019 Jacques Marneweck.  All rights strictly reserved.
  * @license   MIT
  */
 
