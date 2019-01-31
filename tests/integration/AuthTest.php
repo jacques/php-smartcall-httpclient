@@ -39,7 +39,9 @@ class AuthTest extends \PHPUnit\Framework\TestCase
             'hostname' => 'www.smartcallesb.co.za',
             'port'     => '8101',
         ]);
-        $response = $client->auth('tap', 'swordfish');
+        $client->setUsername('tap');
+        $client->setPAssword('swordfish');
+        $response = $client->auth();
 
         self::assertInternalType('array', $response);
         self::assertCount(3, $response);
@@ -58,7 +60,9 @@ class AuthTest extends \PHPUnit\Framework\TestCase
             'hostname' => 'www.smartcallesb.co.za',
             'port'     => '8101',
         ]);
-        $response = $client->auth('tappy', 'swordfish');
+        $client->setUsername('tappy');
+        $client->setPAssword('sw0rdf1sh');
+        $response = $client->auth();
 
         self::assertInternalType('array', $response);
         self::assertCount(3, $response);
@@ -76,11 +80,45 @@ class AuthTest extends \PHPUnit\Framework\TestCase
             'hostname' => 'www.smartcallesb.co.za',
             'port'     => '8101',
         ]);
-        $response = $client->auth('tap', 'sw0rdf1sh');
+        $client->setUsername('tap');
+        $client->setPAssword('sw0rdf1sh');
+        $response = $client->auth();
 
         self::assertInternalType('array', $response);
         self::assertCount(3, $response);
         self::assertEquals('error', $response['status']);
         self::assertEquals(401, $response['http_code']);
+        self::assertInstanceOf('\stdClass', $response['body']);
+        self::assertEquals('Invalid password', $response['body']->responseDescription);
+        self::assertNull($response['body']->accessToken);
+        self::assertNull($response['body']->tokenType);
+        self::assertNull($response['body']->expiresAt);
+        self::assertNull($response['body']->scope);
+    }
+
+    /**
+     * @vcr test_auth__invalid_source_ip
+     */
+    public function testAuthInvalidSourceIP()
+    {
+        $client = new Client([
+            'scheme'   => 'https',
+            'hostname' => 'www.smartcallesb.co.za',
+            'port'     => '8101',
+        ]);
+        $client->setUsername('tap');
+        $client->setPAssword('sw0rdf1sh');
+        $response = $client->auth();
+
+        self::assertInternalType('array', $response);
+        self::assertCount(3, $response);
+        self::assertEquals('error', $response['status']);
+        self::assertEquals(401, $response['http_code']);
+        self::assertInstanceOf('\stdClass', $response['body']);
+        self::assertEquals('Source IP is not authorised', $response['body']->responseDescription);
+        self::assertNull($response['body']->accessToken);
+        self::assertNull($response['body']->tokenType);
+        self::assertNull($response['body']->expiresAt);
+        self::assertNull($response['body']->scope);
     }
 }
