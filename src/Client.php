@@ -71,8 +71,10 @@ class Client extends \GuzzleHttp\Client
      * Set the bearer token.
      *
      * @param string $token Bearer Token from Auth request
+     *
+     * @return void
      */
-    public function setBearerToken($token)
+    public function setBearerToken($token): void
     {
         $this->options['token'] = $token;
     }
@@ -81,8 +83,10 @@ class Client extends \GuzzleHttp\Client
      * Set the password for basic authentication.
      *
      * @param string $password Password for use with basic authentication
+     *
+     * @return void
      */
-    public function setPassword($password)
+    public function setPassword($password): void
     {
         $this->options['password'] = $password;
     }
@@ -91,8 +95,10 @@ class Client extends \GuzzleHttp\Client
      * Set the username for basic authentication.
      *
      * @param string $username Username for use with basic authentication
+     *
+     * @return void
      */
-    public function setUsername($username)
+    public function setUsername($username): void
     {
         $this->options['username'] = $username;
     }
@@ -222,6 +228,37 @@ class Client extends \GuzzleHttp\Client
     }
 
     /**
+     * Gets the current connection status to the various mobile networks.
+     *
+     * @throws Exception
+     *
+     * @return array
+     */
+    public function health()
+    {
+        try {
+            $response = $this->get(
+                '/webservice/utilities/health',
+                [
+                    'headers' => [
+                        'Authorization' => $this->bearerOrBasic(),
+                    ],
+                ]
+            );
+
+            return [
+                'status'    => 'ok',
+                'http_code' => $response->getStatusCode(),
+                'body'      => (string) $response->getBody(),
+            ];
+        } catch (\GuzzleHttp\Exception\ClientException $e) {
+            return $this->clientError($e);
+        } catch (\GuzzleHttp\Exception\ServerException $e) {
+            return $this->parseError($e);
+        }
+    }
+
+    /**
      * Gets the mobile network on which the SIM is connected.
      *
      * @param string $msisdn
@@ -290,7 +327,7 @@ class Client extends \GuzzleHttp\Client
      *
      * @return array
      */
-    private function clientError(\GuzzleHttp\Exception\ClientException $exception)
+    private function clientError(\GuzzleHttp\Exception\ClientException $exception): array
     {
         $body = (string) $exception->getResponse()->getBody();
 
@@ -308,7 +345,7 @@ class Client extends \GuzzleHttp\Client
      *
      * @return array
      */
-    private function parseError(\GuzzleHttp\Exception\ServerException $exception)
+    private function parseError(\GuzzleHttp\Exception\ServerException $exception): array
     {
         $body = (string) $exception->getResponse()->getBody();
         preg_match('/<p><b>(JBWEB\d{6}): type<\/b> (JBWEB\d{6}): Exception report<\/p><p><b>(JBWEB\d{6}): message<\/b> <u>(.*[^<\/u>])<\/u><\/p><p><b>(JBWEB\d{6}): description<\/b> <u>(.+[^<\/u>])<\/u><\/p>/ims', $body, $matches);
@@ -325,7 +362,7 @@ class Client extends \GuzzleHttp\Client
      *
      * @return string
      */
-    private function bearerOrBasic()
+    private function bearerOrBasic(): string
     {
         /**
          * Get the function calling this method.

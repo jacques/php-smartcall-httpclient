@@ -1,0 +1,33 @@
+[{
+    "request": {
+        "method": "GET",
+        "url": "https:\/\/www.smartcallesb.co.za:8101\/webservice\/utilities\/health",
+        "headers": {
+            "Host": "www.smartcallesb.co.za:8101",
+            "Accept-Encoding": null,
+            "User-Agent": "SmartcallRestfulAPIClient-PHP\/0.0.1 GuzzleHttp\/6.3.3 curl\/7.63.0 PHP\/7.2.14",
+            "Authorization": "Bearer",
+            "Accept": null
+        }
+    },
+    "response": {
+        "status": {
+            "http_version": "1.1",
+            "code": "401",
+            "message": "Unauthorized"
+        },
+        "headers": {
+            "Server": "Apache-Coyote\/1.1",
+            "Pragma": "No-cache",
+            "Cache-Control": "no-cache",
+            "Expires": "Thu, 01 Jan 1970 02:00:00 SAST",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, DELETE, PUT",
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Content-Type": "application\/json",
+            "Transfer-Encoding": "chunked",
+            "Date": "Fri, 01 Feb 2019 09:36:40 GMT"
+        },
+        "body": "{\"responseDescription\":\"Authorization denied. Invalid authorization header\",\"accessToken\":null,\"tokenType\":null,\"expiresAt\":null,\"scope\":null}"
+    }
+}]
