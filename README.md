@@ -8,6 +8,9 @@
 
 > Consumes the SmartCall Restful API instead of using the SmartCall Restful Proxy and
 > requiring to having instances running java and tomcat in order to vend airtime.
+> Reconcilliation against your SmartCall account is outside of the scope of this
+> package.  SmartCall provides various daily reports in order to recon all your
+> transactions, which were successful, simcard stats, etc.
 
 ---
 
