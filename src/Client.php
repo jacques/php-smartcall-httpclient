@@ -370,12 +370,7 @@ class Client extends \GuzzleHttp\Client
         $caller = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 2)[1]['function'];
 
         if (
-            !in_array(
-                $caller,
-                [
-                    'auth',
-                ]
-            )
+            !($caller == 'auth')
         ) {
             return sprintf(
                 'Bearer %s',
