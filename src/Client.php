@@ -14,11 +14,13 @@ namespace Jacques\Smartcall\HttpClient;
 
 use Jacques\Smartcall\HttpClient\Traits\SmartLoad;
 use Jacques\Smartcall\HttpClient\Traits\SmartRica;
+use Jacques\Smartcall\HttpClient\Traits\Utilities;
 
 class Client extends \GuzzleHttp\Client
 {
     use SmartLoad;
     use SmartRica;
+    use Utilities;
 
     /**
      * @const string Version number
@@ -228,73 +230,6 @@ class Client extends \GuzzleHttp\Client
     }
 
     /**
-     * Gets the current connection status to the various mobile networks.
-     *
-     * @throws Exception
-     *
-     * @return array
-     */
-    public function health()
-    {
-        try {
-            $response = $this->get(
-                '/webservice/utilities/health',
-                [
-                    'headers' => [
-                        'Authorization' => $this->bearerOrBasic(),
-                    ],
-                ]
-            );
-
-            return [
-                'status'    => 'ok',
-                'http_code' => $response->getStatusCode(),
-                'body'      => (string) $response->getBody(),
-            ];
-        } catch (\GuzzleHttp\Exception\ClientException $e) {
-            return $this->clientError($e);
-        } catch (\GuzzleHttp\Exception\ServerException $e) {
-            return $this->parseError($e);
-        }
-    }
-
-    /**
-     * Gets the mobile network on which the SIM is connected.
-     *
-     * @param string $msisdn
-     *
-     * @throws Exception
-     *
-     * @return array
-     */
-    public function simnetwork($msisdn)
-    {
-        try {
-            $response = $this->get(
-                sprintf(
-                    '/webservice/utilities/simnetwork/%d',
-                    $msisdn
-                ),
-                [
-                    'headers' => [
-                        'Authorization' => $this->bearerOrBasic(),
-                    ],
-                ]
-            );
-
-            return [
-                'status'    => 'ok',
-                'http_code' => $response->getStatusCode(),
-                'body'      => (string) $response->getBody(),
-            ];
-        } catch (\GuzzleHttp\Exception\ClientException $e) {
-            return $this->clientError($e);
-        } catch (\GuzzleHttp\Exception\ServerException $e) {
-            return $this->parseError($e);
-        }
-    }
-
-    /**
      * Test SmartCall is responding.
      *
      * @throws Exception
@@ -369,8 +304,7 @@ class Client extends \GuzzleHttp\Client
          */
         $caller = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 2)[1]['function'];
 
-        if (
-            !($caller == 'auth')
+        if (!($caller == 'auth')
         ) {
             return sprintf(
                 'Bearer %s',
