@@ -17,7 +17,7 @@ trait Utilities
     /**
      * Gets the current connection status to the various mobile networks.
      *
-     * @throws Exception
+     * @throws \Exception
      *
      * @return array
      */
@@ -50,7 +50,7 @@ trait Utilities
      *
      * @param string $msisdn
      *
-     * @throws Exception
+     * @throws \Exception
      *
      * @return array
      */

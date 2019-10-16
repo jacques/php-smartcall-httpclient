@@ -14,7 +14,7 @@ namespace Jacques\Smartcall\HttpClient\Traits;
 
 trait SmartRica
 {
-    public function changeownership()
+    public function changeownership(): array
     {
         try {
             $response = $this->post(
@@ -53,7 +53,7 @@ trait SmartRica
         }
     }
 
-    public function registrations()
+    public function registrations(): array
     {
         try {
             $response = $this->post(

@@ -19,7 +19,7 @@ trait SmartLoad
      *
      * @param string $dealerMsisdn
      *
-     * @throws Exception
+     * @throws \Exception
      *
      * @return array
      */
@@ -57,7 +57,7 @@ trait SmartLoad
      * @param string $dealerMsisdn
      * @param string $clientReference
      *
-     * @throws Exception
+     * @throws \Exception
      *
      * @return array
      */
@@ -96,7 +96,7 @@ trait SmartLoad
      * @param string $start
      * @param string $end
      *
-     * @throws Exception
+     * @throws \Exception
      *
      * @return array
      */
@@ -134,7 +134,7 @@ trait SmartLoad
      *
      * @param string $dealerMsisdn
      *
-     * @throws Exception
+     * @throws \Exception
      *
      * @return array
      */
@@ -173,7 +173,7 @@ trait SmartLoad
      * @param string $amount
      * @param string $sendSms
      *
-     * @throws Exception
+     * @throws \Exception
      *
      * @return array
      */
@@ -212,7 +212,7 @@ trait SmartLoad
      *
      * @param int $networkId
      *
-     * @throws Exception
+     * @throws \Exception
      *
      * @return array
      */
@@ -246,7 +246,7 @@ trait SmartLoad
     /**
      * Authenticate and retrieves a list of all available networks.
      *
-     * @throws Exception
+     * @throws \Exception
      *
      * @return array
      */
@@ -286,7 +286,7 @@ trait SmartLoad
      * @param bool   $pinless
      * @param bool   $sendSms
      */
-    public function prevend($dealerMsisdn, $clientReference, $smsRecipientMsisdn, $deviceId, $productId, $amount, $pinless, $sendSms)
+    public function prevend($dealerMsisdn, $clientReference, $smsRecipientMsisdn, $deviceId, $productId, $amount, $pinless, $sendSms): array
     {
         try {
             $response = $this->post(
@@ -325,7 +325,7 @@ trait SmartLoad
      *
      * @param int $productId
      *
-     * @throws Exception
+     * @throws \Exception
      *
      * @return array
      */
@@ -368,7 +368,7 @@ trait SmartLoad
      * @param bool   $pinless
      * @param bool   $sendSms
      */
-    public function recharge($dealerMsisdn, $clientReference, $smsRecipientMsisdn, $deviceId, $productId, $amount, $pinless, $sendSms)
+    public function recharge($dealerMsisdn, $clientReference, $smsRecipientMsisdn, $deviceId, $productId, $amount, $pinless, $sendSms): array
     {
         try {
             $response = $this->post(
@@ -407,7 +407,7 @@ trait SmartLoad
      *
      * @param string $dealerMsisdn
      *
-     * @throws Exception
+     * @throws \Exception
      *
      * @return array
      */
@@ -445,7 +445,7 @@ trait SmartLoad
      * @param string $dealerMsisdn
      * @param string $clientReference
      */
-    public function transaction($dealerMsisdn, $clientReference)
+    public function transaction($dealerMsisdn, $clientReference): array
     {
         try {
             $response = $this->get(

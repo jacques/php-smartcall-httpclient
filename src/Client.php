@@ -108,7 +108,7 @@ class Client extends \GuzzleHttp\Client
     /**
      * Authenticate and get Bearer token from SmartCall.
      *
-     * @throws Exception
+     * @throws \Exception
      *
      * @return array
      */
@@ -139,7 +139,7 @@ class Client extends \GuzzleHttp\Client
     /**
      * Authenticate and invalidates all the user allocated tokens.
      *
-     * @throws Exception
+     * @throws \Exception
      *
      * @return array
      */
@@ -170,7 +170,7 @@ class Client extends \GuzzleHttp\Client
     /**
      * Authenticate and invalidates all the user allocated tokens.
      *
-     * @throws Exception
+     * @throws \Exception
      *
      * @return array
      */
@@ -201,7 +201,7 @@ class Client extends \GuzzleHttp\Client
     /**
      * Authenticate and gets the number of available session tokens.
      *
-     * @throws Exception
+     * @throws \Exception
      *
      * @return array
      */
@@ -232,7 +232,7 @@ class Client extends \GuzzleHttp\Client
     /**
      * Test SmartCall is responding.
      *
-     * @throws Exception
+     * @throws \Exception
      *
      * @return array
      */
