@@ -1,4 +1,6 @@
+.DS_Store
 1
 build
 composer.lock
+tests/.phpunit.result.cache
 vendor
