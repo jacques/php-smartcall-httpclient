@@ -6,18 +6,23 @@
  * is taking place.  It will be refactored in the near future.
  *
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2017-2019 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2017-2020 Jacques Marneweck.  All rights strictly reserved.
  * @license   MIT
  */
 
 namespace Jacques\Smartcall\HttpClient;
 
+use GuzzleHttp\Client as HttpClient;
+use Jacques\Smartcall\HttpClient\Traits\Dstv;
+use Jacques\Smartcall\HttpClient\Traits\Easypay;
 use Jacques\Smartcall\HttpClient\Traits\SmartLoad;
 use Jacques\Smartcall\HttpClient\Traits\SmartRica;
 use Jacques\Smartcall\HttpClient\Traits\Utilities;
 
-class Client extends \GuzzleHttp\Client
+class Client
 {
+    use Dstv;
+    use Easypay;
     use SmartLoad;
     use SmartRica;
     use Utilities;
@@ -26,6 +31,11 @@ class Client extends \GuzzleHttp\Client
      * @const string Version number
      */
     const VERSION = '0.0.1';
+
+    /**
+     * @var HttpClient
+     */
+    protected $client;
 
     /**
      * Defaults to expecting that Apache Tomcat runs on port 8080 on localhost
@@ -66,7 +76,7 @@ class Client extends \GuzzleHttp\Client
                 'User-Agent' => 'SmartcallRestfulAPIClient-PHP/'.self::VERSION.' '.\GuzzleHttp\default_user_agent(),
             ],
         ];
-        parent::__construct($config);
+        $this->client = new HttpClient($config);
     }
 
     /**
@@ -76,7 +86,7 @@ class Client extends \GuzzleHttp\Client
      *
      * @return void
      */
-    public function setBearerToken($token): void
+    public function setBearerToken(string $token): void
     {
         $this->options['token'] = $token;
     }
@@ -88,7 +98,7 @@ class Client extends \GuzzleHttp\Client
      *
      * @return void
      */
-    public function setPassword($password): void
+    public function setPassword(string $password): void
     {
         $this->options['password'] = $password;
     }
@@ -100,7 +110,7 @@ class Client extends \GuzzleHttp\Client
      *
      * @return void
      */
-    public function setUsername($username): void
+    public function setUsername(string $username): void
     {
         $this->options['username'] = $username;
     }
@@ -115,7 +125,7 @@ class Client extends \GuzzleHttp\Client
     public function auth()
     {
         try {
-            $response = $this->post(
+            $response = $this->client->post(
                 '/webservice/auth',
                 [
                     'headers' => [
@@ -146,7 +156,7 @@ class Client extends \GuzzleHttp\Client
     public function authDelete()
     {
         try {
-            $response = $this->delete(
+            $response = $this->client->delete(
                 '/webservice/auth',
                 [
                     'headers' => [
@@ -177,7 +187,7 @@ class Client extends \GuzzleHttp\Client
     public function authFlush()
     {
         try {
-            $response = $this->delete(
+            $response = $this->client->delete(
                 '/webservice/auth/token',
                 [
                     'headers' => [
@@ -208,7 +218,7 @@ class Client extends \GuzzleHttp\Client
     public function authToken()
     {
         try {
-            $response = $this->get(
+            $response = $this->client->get(
                 '/webservice/auth/token',
                 [
                     'headers' => [
@@ -239,7 +249,7 @@ class Client extends \GuzzleHttp\Client
     public function ping()
     {
         try {
-            $response = $this->get(
+            $response = $this->client->get(
                 '/webservice/test/ping'
             );
 

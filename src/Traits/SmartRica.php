@@ -17,7 +17,7 @@ trait SmartRica
     public function changeownership(): array
     {
         try {
-            $response = $this->post(
+            $response = $this->client->post(
                 '/webservice/smartrica/changeownership',
                 [
                     'headers' => [
@@ -56,7 +56,7 @@ trait SmartRica
     public function registrations(): array
     {
         try {
-            $response = $this->post(
+            $response = $this->client->post(
                 '/webservice/smartrica/registrations',
                 [
                     'headers' => [

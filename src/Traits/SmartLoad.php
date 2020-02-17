@@ -26,7 +26,7 @@ trait SmartLoad
     public function balance($dealerMsisdn)
     {
         try {
-            $response = $this->get(
+            $response = $this->client->get(
                 sprintf(
                     '/webservice/smartload/balance/%s',
                     $dealerMsisdn
@@ -64,7 +64,7 @@ trait SmartLoad
     public function cancelRecharge($dealerMsisdn, $clientReference)
     {
         try {
-            $response = $this->delete(
+            $response = $this->client->delete(
                 sprintf(
                     '/webservice/smartload/recharges/%s/%s',
                     $dealerMsisdn,
@@ -103,7 +103,7 @@ trait SmartLoad
     public function cashup($dealerMsisdn, $start, $end)
     {
         try {
-            $response = $this->post(
+            $response = $this->client->post(
                 '/webservice/smartload/cashup',
                 [
                     'headers' => [
@@ -141,7 +141,7 @@ trait SmartLoad
     public function cashupToday($dealerMsisdn)
     {
         try {
-            $response = $this->get(
+            $response = $this->client->get(
                 sprintf(
                     '/webservice/smartload/cashup/%s',
                     $dealerMsisdn
@@ -180,7 +180,7 @@ trait SmartLoad
     public function fundstransfer($fromDealerMsisdn, $toDealerMsisdn, $amount, $sendSms)
     {
         try {
-            $response = $this->post(
+            $response = $this->client->post(
                 '/webservice/smartload/fundstransfer',
                 [
                     'headers' => [
@@ -219,7 +219,7 @@ trait SmartLoad
     public function network($networkId)
     {
         try {
-            $response = $this->get(
+            $response = $this->client->get(
                 sprintf(
                     '/webservice/smartload/networks/%d',
                     $networkId
@@ -253,7 +253,7 @@ trait SmartLoad
     public function networks()
     {
         try {
-            $response = $this->get(
+            $response = $this->client->get(
                 '/webservice/smartload/networks',
                 [
                     'headers' => [
@@ -289,7 +289,7 @@ trait SmartLoad
     public function prevend($dealerMsisdn, $clientReference, $smsRecipientMsisdn, $deviceId, $productId, $amount, $pinless, $sendSms): array
     {
         try {
-            $response = $this->post(
+            $response = $this->client->post(
                 '/webservice/smartload/prevend',
                 [
                     'headers' => [
@@ -332,7 +332,7 @@ trait SmartLoad
     public function products($productId)
     {
         try {
-            $response = $this->get(
+            $response = $this->client->get(
                 sprintf(
                     '/webservice/smartload/products/%d',
                     $productId
@@ -371,7 +371,7 @@ trait SmartLoad
     public function recharge($dealerMsisdn, $clientReference, $smsRecipientMsisdn, $deviceId, $productId, $amount, $pinless, $sendSms): array
     {
         try {
-            $response = $this->post(
+            $response = $this->client->post(
                 '/webservice/smartload/recharges',
                 [
                     'headers' => [
@@ -414,7 +414,7 @@ trait SmartLoad
     public function registered($dealerMsisdn)
     {
         try {
-            $response = $this->get(
+            $response = $this->client->get(
                 sprintf(
                     '/webservice/smartload/registered/%s',
                     $dealerMsisdn
@@ -448,7 +448,7 @@ trait SmartLoad
     public function transaction($dealerMsisdn, $clientReference): array
     {
         try {
-            $response = $this->get(
+            $response = $this->client->get(
                 sprintf(
                     '/webservice/smartload/recharges/%s/%s',
                     $dealerMsisdn,

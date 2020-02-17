@@ -24,7 +24,7 @@ trait Utilities
     public function health()
     {
         try {
-            $response = $this->get(
+            $response = $this->client->get(
                 '/webservice/utilities/health',
                 [
                     'headers' => [
@@ -57,7 +57,7 @@ trait Utilities
     public function simnetwork($msisdn)
     {
         try {
-            $response = $this->get(
+            $response = $this->client->get(
                 sprintf(
                     '/webservice/utilities/simnetwork/%d',
                     $msisdn
