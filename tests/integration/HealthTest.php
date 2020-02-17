@@ -3,7 +3,7 @@
  * SmartCall Restful API (v3) HTTP Client.
  *
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2017-2019 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2017-2020 Jacques Marneweck.  All rights strictly reserved.
  * @license   MIT
  */
 
@@ -17,7 +17,7 @@ class HealthTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
     }
 
@@ -25,14 +25,14 @@ class HealthTest extends \PHPUnit\Framework\TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
     }
 
     /**
      * @vcr test_health
      */
-    public function testHealth()
+    public function testHealth(): void
     {
         $client = new Client([
             'scheme'   => 'https',
@@ -42,7 +42,7 @@ class HealthTest extends \PHPUnit\Framework\TestCase
         $response = $client->setBearerToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJTbWFydGNhbGwgUkVTVGZ1bCBXZWJzZXJ2aWNlIiwibmJmIjoxNTQ5MDEzOTg4LCJjbGllbnRVc2VybmFtZSI6InRhcCIsImNsaWVudElQIjoiMTA1LjE4Ni45NS4xODgiLCJpc3MiOiJzbWFydGNhbGwuY28uemEiLCJleHAiOjE1NDkxMDAzODgsImlhdCI6MTU0OTAxMzk4OH0.5b6-yc7V2Iu3z-4_rGQEc9au7Kv_Jgp2WUCQg5tFnNA');
         $response = $client->health();
 
-        self::assertInternalType('array', $response);
+        self::assertIsArray($response);
         self::assertCount(3, $response);
         self::assertEquals('ok', $response['status']);
         self::assertEquals(200, $response['http_code']);
@@ -52,7 +52,7 @@ class HealthTest extends \PHPUnit\Framework\TestCase
     /**
      * @vcr test_health__without_bearer_token
      */
-    public function testHealthWithoutBearerToken()
+    public function testHealthWithoutBearerToken(): void
     {
         $client = new Client([
             'scheme'   => 'https',
@@ -61,7 +61,7 @@ class HealthTest extends \PHPUnit\Framework\TestCase
         ]);
         $response = $client->health();
 
-        self::assertInternalType('array', $response);
+        self::assertIsArray($response);
         self::assertCount(3, $response);
         self::assertEquals('error', $response['status']);
         self::assertEquals(401, $response['http_code']);
@@ -76,7 +76,7 @@ class HealthTest extends \PHPUnit\Framework\TestCase
     /**
      * @vcr test_health__with_expired_bearer_token
      */
-    public function testHealthWithExpiredBearerToken()
+    public function testHealthWithExpiredBearerToken(): void
     {
         $client = new Client([
             'scheme'   => 'https',
@@ -86,7 +86,7 @@ class HealthTest extends \PHPUnit\Framework\TestCase
         $response = $client->setBearerToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJTbWFydGNhbGwgUkVTVGZ1bCBXZWJzZXJ2aWNlIiwibmJmIjoxNTQ5MDEzOTg4LCJjbGllbnRVc2VybmFtZSI6InRhcCIsImNsaWVudElQIjoiMTA1LjE4Ni45NS4xODgiLCJpc3MiOiJzbWFydGNhbGwuY28uemEiLCJleHAiOjE1NDkxMDAzODgsImlhdCI6MTU0OTAxMzk4OH0.5b6-yc7V2Iu3z-4_rGQEc9au7Kv_Jgp2WUCQg5tFnNA');
         $response = $client->health();
 
-        self::assertInternalType('array', $response);
+        self::assertIsArray($response);
         self::assertCount(3, $response);
         self::assertEquals('error', $response['status']);
         self::assertEquals(401, $response['http_code']);

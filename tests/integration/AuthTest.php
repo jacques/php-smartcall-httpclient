@@ -3,7 +3,7 @@
  * SmartCall Restful API (v3) HTTP Client.
  *
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2017-2019 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2017-2020 Jacques Marneweck.  All rights strictly reserved.
  * @license   MIT
  */
 
@@ -17,7 +17,7 @@ class AuthTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
     }
 
@@ -25,14 +25,14 @@ class AuthTest extends \PHPUnit\Framework\TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
     }
 
     /**
      * @vcr test_auth
      */
-    public function testAuth()
+    public function testAuth(): void
     {
         $client = new Client([
             'scheme'   => 'https',
@@ -43,7 +43,7 @@ class AuthTest extends \PHPUnit\Framework\TestCase
         $client->setPAssword('swordfish');
         $response = $client->auth();
 
-        self::assertInternalType('array', $response);
+        self::assertIsArray($response);
         self::assertCount(3, $response);
         self::assertEquals('ok', $response['status']);
         self::assertEquals(200, $response['http_code']);
@@ -53,7 +53,7 @@ class AuthTest extends \PHPUnit\Framework\TestCase
     /**
      * @vcr test_auth__invalid_username
      */
-    public function testAuthInvalidUsername()
+    public function testAuthInvalidUsername(): void
     {
         $client = new Client([
             'scheme'   => 'https',
@@ -64,7 +64,7 @@ class AuthTest extends \PHPUnit\Framework\TestCase
         $client->setPAssword('sw0rdf1sh');
         $response = $client->auth();
 
-        self::assertInternalType('array', $response);
+        self::assertIsArray($response);
         self::assertCount(3, $response);
         self::assertEquals('error', $response['status']);
         self::assertEquals(401, $response['http_code']);
@@ -73,7 +73,7 @@ class AuthTest extends \PHPUnit\Framework\TestCase
     /**
      * @vcr test_auth__invalid_password
      */
-    public function testAuthInvalidPassword()
+    public function testAuthInvalidPassword(): void
     {
         $client = new Client([
             'scheme'   => 'https',
@@ -84,7 +84,7 @@ class AuthTest extends \PHPUnit\Framework\TestCase
         $client->setPAssword('sw0rdf1sh');
         $response = $client->auth();
 
-        self::assertInternalType('array', $response);
+        self::assertIsArray($response);
         self::assertCount(3, $response);
         self::assertEquals('error', $response['status']);
         self::assertEquals(401, $response['http_code']);
@@ -99,7 +99,7 @@ class AuthTest extends \PHPUnit\Framework\TestCase
     /**
      * @vcr test_auth__invalid_source_ip
      */
-    public function testAuthInvalidSourceIP()
+    public function testAuthInvalidSourceIP(): void
     {
         $client = new Client([
             'scheme'   => 'https',
@@ -110,7 +110,7 @@ class AuthTest extends \PHPUnit\Framework\TestCase
         $client->setPAssword('sw0rdf1sh');
         $response = $client->auth();
 
-        self::assertInternalType('array', $response);
+        self::assertIsArray($response);
         self::assertCount(3, $response);
         self::assertEquals('error', $response['status']);
         self::assertEquals(401, $response['http_code']);

@@ -3,7 +3,7 @@
  * SmartCall Restful API (v3) HTTP Client.
  *
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2017-2019 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2017-2020 Jacques Marneweck.  All rights strictly reserved.
  * @license   MIT
  */
 
@@ -17,7 +17,7 @@ class CashupTest extends \PHPUnit\Framework\TestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
     }
 
@@ -25,14 +25,14 @@ class CashupTest extends \PHPUnit\Framework\TestCase
      * Tears down the fixture, for example, closes a network connection.
      * This method is called after a test is executed.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
     }
 
     /**
      * @vcr test_cashup_27813272161_no_auth
      */
-    public function testCashup27813272161NoAuth()
+    public function testCashup27813272161NoAuth(): void
     {
         $client = new Client([
             'scheme'   => 'https',
@@ -41,7 +41,7 @@ class CashupTest extends \PHPUnit\Framework\TestCase
         ]);
         $response = $client->cashup('27813272161', '2018-10-01', '2018-10-27');
 
-        self::assertInternalType('array', $response);
+        self::assertIsArray($response);
         self::assertCount(3, $response);
         self::assertEquals('error', $response['status']);
         self::assertEquals(401, $response['http_code']);
@@ -59,7 +59,7 @@ class CashupTest extends \PHPUnit\Framework\TestCase
     /**
      * @vcr test_cashup_27813272161
      */
-    public function testCashup27813272161()
+    public function testCashup27813272161(): void
     {
         $client = new Client([
             'scheme'   => 'https',
@@ -69,7 +69,7 @@ class CashupTest extends \PHPUnit\Framework\TestCase
         $response = $client->setBearerToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJTbWFydGNhbGwgUkVTVGZ1bCBXZWJzZXJ2aWNlIiwibmJmIjoxNTQwNjI1NzAxLCJjbGllbnRVc2VybmFtZSI6InRhcCIsImNsaWVudElQIjoiMTA1LjIyOC4yMC42MiIsImlzcyI6InNtYXJ0Y2FsbC5jby56YSIsImV4cCI6MTU0MDcxMjEwMSwiaWF0IjoxNTQwNjI1NzAxfQ._gDSG3aBe43Sn5VM8IMWPawWvZfYlrPJmxZT2VJYcDk');
         $response = $client->cashup('27813272161', '2018-10-01', '2018-10-27');
 
-        self::assertInternalType('array', $response);
+        self::assertIsArray($response);
         self::assertCount(3, $response);
         self::assertEquals('ok', $response['status']);
         self::assertEquals(200, $response['http_code']);
@@ -79,7 +79,7 @@ class CashupTest extends \PHPUnit\Framework\TestCase
     /**
      * @vcr test_cashup_27813272161_2018-01-01_2018-01-31
      */
-    public function testCashup27813272161Jan2018()
+    public function testCashup27813272161Jan2018(): void
     {
         $client = new Client([
             'scheme'   => 'https',
@@ -89,7 +89,7 @@ class CashupTest extends \PHPUnit\Framework\TestCase
         $response = $client->setBearerToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJTbWFydGNhbGwgUkVTVGZ1bCBXZWJzZXJ2aWNlIiwibmJmIjoxNTQwNjI1NzAxLCJjbGllbnRVc2VybmFtZSI6InRhcCIsImNsaWVudElQIjoiMTA1LjIyOC4yMC42MiIsImlzcyI6InNtYXJ0Y2FsbC5jby56YSIsImV4cCI6MTU0MDcxMjEwMSwiaWF0IjoxNTQwNjI1NzAxfQ._gDSG3aBe43Sn5VM8IMWPawWvZfYlrPJmxZT2VJYcDk');
         $response = $client->cashup('27813272161', '2018-01-01', '2018-01-31');
 
-        self::assertInternalType('array', $response);
+        self::assertIsArray($response);
         self::assertCount(3, $response);
         self::assertEquals('ok', $response['status']);
         self::assertEquals(200, $response['http_code']);
@@ -99,7 +99,7 @@ class CashupTest extends \PHPUnit\Framework\TestCase
     /**
      * @vcr test_cashup_27813272161__invalid_token
      */
-    public function testCashupInvalidToken()
+    public function testCashupInvalidToken(): void
     {
         $client = new Client([
             'scheme'   => 'https',
@@ -109,7 +109,7 @@ class CashupTest extends \PHPUnit\Framework\TestCase
         $response = $client->setBearerToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJTbWFydGNhbGwgUkVTVGZ1bCBXZWJzZXJ2aWNlIiwibmJmIjoxNTE4ODcyMzEzLCJjbGllbnRVc2VybmFtZSI6InRhcCIsImNsaWVudElQIjoiNDEuNzkuNzcuMjMiLCJpc3MiOiJzbWFydGNhbGwuY28uemEiLCJleHAiOjE1MTg5NTg3MTMsImlhdCI6MTUxODg3MjMxM30.Gzvlzdzu-EEIy-swibi-K6yRBu-IlBoNHXymxOYquwA');
         $response = $client->cashup('27813272161', '2018-10-01', '2018-10-27');
 
-        self::assertInternalType('array', $response);
+        self::assertIsArray($response);
         self::assertCount(3, $response);
         self::assertEquals('error', $response['status']);
         self::assertEquals(401, $response['http_code']);
