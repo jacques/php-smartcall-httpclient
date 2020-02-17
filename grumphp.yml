@@ -7,13 +7,17 @@ parameters:
             testsuite: ~
             group: []
             always_execute: false
+        pdepend: ~
         phpcs:
             standard: PSR1,PSR2
             warning_severity: ~
             ignore_patterns:
+              - assets/plugins/
               - tests/
               - tmp/
             triggered_by: [php]
             sniffs: []
+        phpmd: ~
         psalm:
             threads: 4
+        securitychecker: ~
