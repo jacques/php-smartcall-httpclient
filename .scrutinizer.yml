@@ -8,6 +8,8 @@ checks:
 coding_style:
     php: {  }
 build:
+    environment:
+        php: 7.3.14
     tests:
         override:
             -
