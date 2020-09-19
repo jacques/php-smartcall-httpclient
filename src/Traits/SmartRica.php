@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 /**
  * SmartCall Restful API (v3) HTTP Client.
  *
@@ -22,7 +24,7 @@ trait SmartRica
                 [
                     'headers' => [
                         'Authorization' => $this->bearerOrBasic(),
-                        'Content-Type' => 'application/json',
+                        'Content-Type'  => 'application/json',
                     ],
                     'json' => [
                         'agentId'                => '27821234567',
