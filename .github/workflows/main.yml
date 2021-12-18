@@ -24,10 +24,10 @@ jobs:
           php-version: "${{ matrix.php-version }}"
 
       - name: use https instead of http
-         run: git config --global url.https://github.com/.insteadOf ssh://git@github.com/
+        run: git config --global url.https://github.com/.insteadOf ssh://git@github.com/
       - name: composer install
-         run: composer install --prefer-dist
-         env:
+        run: composer install --prefer-dist
+        env:
           token: ${{secrets.COMPOSER_AUTH}}
       - name: composer test
-         run: composer test
+        run: composer test
