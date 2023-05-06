@@ -40,7 +40,7 @@ $ composer require jacques/php-smartcall-httpclient:dev-master
 
 ## License
 
-Copyright (c) 2017-2021 Jacques Marneweck <jacques@siberia.co.za>
+Copyright (c) 2017-2023 Jacques Marneweck <jacques@siberia.co.za>
 
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal
