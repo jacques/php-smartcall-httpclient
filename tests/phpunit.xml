@@ -1,31 +1,26 @@
-<phpunit backupGlobals="false"
-         backupStaticAttributes="false"
-         colors="true"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true"
-         bootstrap="./bootstrap.php"
-         verbose="true">
-    <testsuite name="SmartCall HTTP Client Test Suite">
-        <directory>./</directory>
-    </testsuite>
-    <logging>
-        <log type="coverage-html" target="../build/coverage"/>
-    </logging>
-    <groups>
-       <exclude>
-         <group>exclude</group>
-         <group>onlinetest</group>
-         <group>donttest</group>
-         <group>functional</group>
-       </exclude>
-    </groups>
-  <filter>
-    <whitelist processUncoveredFilesFromWhitelist="false">
+<?xml version="1.0"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" backupGlobals="false" backupStaticAttributes="false" colors="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" bootstrap="./bootstrap.php" verbose="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage processUncoveredFiles="false">
+    <include>
       <directory suffix=".php">../src/</directory>
-    </whitelist>
-  </filter>
+    </include>
+    <report>
+      <html outputDirectory="../build/coverage"/>
+    </report>
+  </coverage>
+  <testsuite name="SmartCall HTTP Client Test Suite">
+    <directory>./</directory>
+  </testsuite>
+  <logging/>
+  <groups>
+    <exclude>
+      <group>exclude</group>
+      <group>onlinetest</group>
+      <group>donttest</group>
+      <group>functional</group>
+    </exclude>
+  </groups>
   <listeners>
-     <listener class="VCR\PHPUnit\TestListener\VCRTestListener" file="vendor/php-vcr/phpunit-testlistener-vcr/src/VCRTestListener.php" />
-   </listeners>
+    <listener class="VCR\PHPUnit\TestListener\VCRTestListener" file="vendor/covergenius/phpunit-testlistener-vcr/src/VCRTestListener.php"/>
+  </listeners>
 </phpunit>
