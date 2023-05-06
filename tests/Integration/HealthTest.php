@@ -1,11 +1,9 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 /**
  * SmartCall Restful API (v3) HTTP Client.
  *
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2017-2020 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2017-2023 Jacques Marneweck.  All rights strictly reserved.
  * @license   MIT
  */
 
@@ -13,7 +11,7 @@ namespace Jacques\Smartcall\HttpClient\Tests\Integration;
 
 use Jacques\Smartcall\HttpClient\Client;
 
-class HealthTest extends \PHPUnit\Framework\TestCase
+final class HealthTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -46,9 +44,9 @@ class HealthTest extends \PHPUnit\Framework\TestCase
 
         self::assertIsArray($response);
         self::assertCount(3, $response);
-        self::assertEquals('ok', $response['status']);
-        self::assertEquals(200, $response['http_code']);
-        self::assertEquals('{"vodacom":"UP","mtn":"UP","cellc":"UP","telkom":"UP","virgin":"UP"}', $response['body']);
+        self::assertSame('ok', $response['status']);
+        self::assertSame(200, $response['http_code']);
+        self::assertSame('{"vodacom":"UP","mtn":"UP","cellc":"UP","telkom":"UP","virgin":"UP"}', $response['body']);
     }
 
     /**
@@ -65,10 +63,10 @@ class HealthTest extends \PHPUnit\Framework\TestCase
 
         self::assertIsArray($response);
         self::assertCount(3, $response);
-        self::assertEquals('error', $response['status']);
-        self::assertEquals(401, $response['http_code']);
+        self::assertSame('error', $response['status']);
+        self::assertSame(401, $response['http_code']);
         self::assertInstanceOf('\StdClass', $response['body']);
-        self::assertEquals('Authorization denied. Invalid authorization header', $response['body']->responseDescription);
+        self::assertSame('Authorization denied. Invalid authorization header', $response['body']->responseDescription);
         self::assertNull($response['body']->accessToken);
         self::assertNull($response['body']->tokenType);
         self::assertNull($response['body']->expiresAt);
@@ -90,10 +88,10 @@ class HealthTest extends \PHPUnit\Framework\TestCase
 
         self::assertIsArray($response);
         self::assertCount(3, $response);
-        self::assertEquals('error', $response['status']);
-        self::assertEquals(401, $response['http_code']);
+        self::assertSame('error', $response['status']);
+        self::assertSame(401, $response['http_code']);
         self::assertInstanceOf('\StdClass', $response['body']);
-        self::assertEquals('Authorization denied. Token validation failed', $response['body']->responseDescription);
+        self::assertSame('Authorization denied. Token validation failed', $response['body']->responseDescription);
         self::assertNull($response['body']->accessToken);
         self::assertNull($response['body']->tokenType);
         self::assertNull($response['body']->expiresAt);

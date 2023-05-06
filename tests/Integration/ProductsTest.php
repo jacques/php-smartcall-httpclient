@@ -1,11 +1,9 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 /**
  * SmartCall Restful API (v3) HTTP Client.
  *
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2017-2020 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2017-2023 Jacques Marneweck.  All rights strictly reserved.
  * @license   MIT
  */
 
@@ -13,7 +11,7 @@ namespace Jacques\Smartcall\HttpClient\Tests\Integration;
 
 use Jacques\Smartcall\HttpClient\Client;
 
-class ProductsTest extends \PHPUnit\Framework\TestCase
+final class ProductsTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -46,9 +44,9 @@ class ProductsTest extends \PHPUnit\Framework\TestCase
 
         self::assertIsArray($response);
         self::assertCount(3, $response);
-        self::assertEquals('ok', $response['status']);
-        self::assertEquals(200, $response['http_code']);
-        self::assertEquals('{"products":[{"id":22,"name":"2000 SMS-R450","description":"2000 SMS-R450","typeCode":"S ","minAmount":450.0000,"maxAmount":450.0000,"discountPercentage":5.5000,"retailValue":450.0000,"pinIndicator":false,"smsIndicator":false},{"id":22,"name":"2000 SMS-R450","description":"2000 SMS-R450","typeCode":"S ","minAmount":450.0000,"maxAmount":450.0000,"discountPercentage":5.5000,"retailValue":450.0000,"pinIndicator":false,"smsIndicator":true}]}', $response['body']);
+        self::assertSame('ok', $response['status']);
+        self::assertSame(200, $response['http_code']);
+        self::assertSame('{"products":[{"id":22,"name":"2000 SMS-R450","description":"2000 SMS-R450","typeCode":"S ","minAmount":450.0000,"maxAmount":450.0000,"discountPercentage":5.5000,"retailValue":450.0000,"pinIndicator":false,"smsIndicator":false},{"id":22,"name":"2000 SMS-R450","description":"2000 SMS-R450","typeCode":"S ","minAmount":450.0000,"maxAmount":450.0000,"discountPercentage":5.5000,"retailValue":450.0000,"pinIndicator":false,"smsIndicator":true}]}', $response['body']);
     }
 
     /**
@@ -66,8 +64,8 @@ class ProductsTest extends \PHPUnit\Framework\TestCase
 
         self::assertIsArray($response);
         self::assertCount(3, $response);
-        self::assertEquals('error', $response['status']);
-        self::assertEquals(401, $response['http_code']);
+        self::assertSame('error', $response['status']);
+        self::assertSame(401, $response['http_code']);
         self::assertInstanceOf('\StdClass', $response['body']);
         $expected = new \StdClass();
         $expected->responseDescription = 'Authorization denied. Token validation failed';

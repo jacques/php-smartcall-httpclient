@@ -1,11 +1,9 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 /**
  * SmartCall Restful API (v3) HTTP Client.
  *
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2017-2020 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2017-2023 Jacques Marneweck.  All rights strictly reserved.
  * @license   MIT
  */
 
@@ -13,7 +11,7 @@ namespace Jacques\Smartcall\HttpClient\Tests\Integration;
 
 use Jacques\Smartcall\HttpClient\Client;
 
-class CancelRechargeTest extends \PHPUnit\Framework\TestCase
+final class CancelRechargeTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -46,11 +44,11 @@ class CancelRechargeTest extends \PHPUnit\Framework\TestCase
 
         self::assertIsArray($response);
         self::assertCount(3, $response);
-        self::assertEquals('ok', $response['status']);
-        self::assertEquals(200, $response['http_code']);
+        self::assertSame('ok', $response['status']);
+        self::assertSame(200, $response['http_code']);
         $expected = '{"error":null,"responseCode":"SUCCESS"}';
 
-        self::assertEquals($expected, $response['body']);
+        self::assertSame($expected, $response['body']);
     }
 
     /**
@@ -68,8 +66,8 @@ class CancelRechargeTest extends \PHPUnit\Framework\TestCase
 
         self::assertIsArray($response);
         self::assertCount(3, $response);
-        self::assertEquals('error', $response['status']);
-        self::assertEquals(400, $response['http_code']);
+        self::assertSame('error', $response['status']);
+        self::assertSame(400, $response['http_code']);
         self::assertInstanceOf('\StdClass', $response['body']);
         $expected = new \StdClass();
         $expected->code = 7;
@@ -93,8 +91,8 @@ class CancelRechargeTest extends \PHPUnit\Framework\TestCase
 
         self::assertIsArray($response);
         self::assertCount(3, $response);
-        self::assertEquals('error', $response['status']);
-        self::assertEquals(401, $response['http_code']);
+        self::assertSame('error', $response['status']);
+        self::assertSame(401, $response['http_code']);
         self::assertInstanceOf('\StdClass', $response['body']);
         $expected = new \StdClass();
         $expected->responseDescription = 'Authorization denied. Token validation failed';

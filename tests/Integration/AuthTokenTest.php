@@ -1,11 +1,9 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 /**
  * SmartCall Restful API (v3) HTTP Client.
  *
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2017-2020 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2017-2023 Jacques Marneweck.  All rights strictly reserved.
  * @license   MIT
  */
 
@@ -13,7 +11,7 @@ namespace Jacques\Smartcall\HttpClient\Tests\Integration;
 
 use Jacques\Smartcall\HttpClient\Client;
 
-class AuthTokenTest extends \PHPUnit\Framework\TestCase
+final class AuthTokenTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -41,13 +39,13 @@ class AuthTokenTest extends \PHPUnit\Framework\TestCase
             'hostname' => 'www.smartcallesb.co.za',
             'port'     => '8101',
         ]);
-        $response = $client->authToken('tap', 'swordfish');
+        $response = $client->authToken();
 
         self::assertIsArray($response);
         self::assertCount(3, $response);
-        self::assertEquals('ok', $response['status']);
-        self::assertEquals(200, $response['http_code']);
-        self::assertEquals('{"availableTokens":18}', $response['body']);
+        self::assertSame('ok', $response['status']);
+        self::assertSame(200, $response['http_code']);
+        self::assertSame('{"availableTokens":18}', $response['body']);
     }
 
     /**
@@ -60,12 +58,12 @@ class AuthTokenTest extends \PHPUnit\Framework\TestCase
             'hostname' => 'www.smartcallesb.co.za',
             'port'     => '8101',
         ]);
-        $response = $client->authToken('tappy', 'swordfish');
+        $response = $client->authToken();
 
         self::assertIsArray($response);
         self::assertCount(3, $response);
-        self::assertEquals('error', $response['status']);
-        self::assertEquals(401, $response['http_code']);
+        self::assertSame('error', $response['status']);
+        self::assertSame(401, $response['http_code']);
 
         $expected = new \StdClass();
         $expected->responseDescription = 'Invalid username';
@@ -87,12 +85,12 @@ class AuthTokenTest extends \PHPUnit\Framework\TestCase
             'hostname' => 'www.smartcallesb.co.za',
             'port'     => '8101',
         ]);
-        $response = $client->authToken('tap', 'sw0rdf1sh');
+        $response = $client->authToken();
 
         self::assertIsArray($response);
         self::assertCount(3, $response);
-        self::assertEquals('error', $response['status']);
-        self::assertEquals(401, $response['http_code']);
+        self::assertSame('error', $response['status']);
+        self::assertSame(401, $response['http_code']);
 
         $expected = new \StdClass();
         $expected->responseDescription = 'Invalid password';

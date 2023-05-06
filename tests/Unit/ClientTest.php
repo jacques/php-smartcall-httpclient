@@ -1,19 +1,18 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 /**
  * SmartCall Restful API (v3) HTTP Client.
  *
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2017-2020 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2017-2023 Jacques Marneweck.  All rights strictly reserved.
  * @license   MIT
  */
 
 namespace Jacques\Smartcall\HttpClient\Tests\Unit;
 
 use Jacques\Smartcall\HttpClient\Client;
+use ReflectionClass;
 
-class ClientTest extends \PHPUnit\Framework\TestCase
+final class ClientTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -31,7 +30,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
     {
     }
 
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $client = new Client([
             'scheme'   => 'https',
@@ -39,7 +38,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
             'port'     => '8101',
         ]);
 
-        self::assertInstanceOf('Jacques\Smartcall\HttpClient\Client', $client);
+        self::assertInstanceOf(\Jacques\Smartcall\HttpClient\Client::class, $client);
         $expected = [
             'scheme'   => 'https',
             'hostname' => 'www.smartcallesb.co.za',
@@ -48,7 +47,12 @@ class ClientTest extends \PHPUnit\Framework\TestCase
             'username' => null,
             'password' => null,
         ];
-        self::assertAttributeEquals($expected, 'options', $client);
+
+        $reflection = new ReflectionClass($client);
+        $options = $reflection->getProperty('options');
+        $options->setAccessible(true);
+
+        self::assertEquals($expected, $options->getValue($client));
 
         $client = new Client([
             'scheme'   => 'https',
@@ -58,7 +62,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
             'password' => 'sw0rdf1sh',
         ]);
 
-        self::assertInstanceOf('Jacques\Smartcall\HttpClient\Client', $client);
+        self::assertInstanceOf(\Jacques\Smartcall\HttpClient\Client::class, $client);
         $expected = [
             'scheme'   => 'https',
             'hostname' => 'www.smartcallesb.co.za',
@@ -67,10 +71,15 @@ class ClientTest extends \PHPUnit\Framework\TestCase
             'username' => 'joesoap',
             'password' => 'sw0rdf1sh',
         ];
-        self::assertAttributeEquals($expected, 'options', $client);
+
+        $reflection = new ReflectionClass($client);
+        $options = $reflection->getProperty('options');
+        $options->setAccessible(true);
+
+        self::assertEquals($expected, $options->getValue($client));
     }
 
-    public function testSetBearerToken()
+    public function testSetBearerToken(): void
     {
         $client = new Client([
             'scheme'   => 'https',
@@ -80,7 +89,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
             'password' => 'sw0rdf1sh',
         ]);
 
-        self::assertInstanceOf('Jacques\Smartcall\HttpClient\Client', $client);
+        self::assertInstanceOf(\Jacques\Smartcall\HttpClient\Client::class, $client);
         $expected = [
             'scheme'   => 'https',
             'hostname' => 'www.smartcallesb.co.za',
@@ -89,7 +98,13 @@ class ClientTest extends \PHPUnit\Framework\TestCase
             'username' => 'joesoap',
             'password' => 'sw0rdf1sh',
         ];
-        self::assertAttributeEquals($expected, 'options', $client);
+
+        $reflection = new ReflectionClass($client);
+        $options = $reflection->getProperty('options');
+        $options->setAccessible(true);
+
+        self::assertEquals($expected, $options->getValue($client));
+
         $client->setBearerToken('bearer-token-test');
         $expected = [
             'scheme'   => 'https',
@@ -99,10 +114,15 @@ class ClientTest extends \PHPUnit\Framework\TestCase
             'username' => 'joesoap',
             'password' => 'sw0rdf1sh',
         ];
-        self::assertAttributeEquals($expected, 'options', $client);
+
+        $reflection = new ReflectionClass($client);
+        $options = $reflection->getProperty('options');
+        $options->setAccessible(true);
+
+        self::assertSame($expected, $options->getValue($client));
     }
 
-    public function testSetPassword()
+    public function testSetPassword(): void
     {
         $client = new Client([
             'scheme'   => 'https',
@@ -112,7 +132,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
             'username' => 'joesoap',
         ]);
 
-        self::assertInstanceOf('Jacques\Smartcall\HttpClient\Client', $client);
+        self::assertInstanceOf(\Jacques\Smartcall\HttpClient\Client::class, $client);
         $expected = [
             'scheme'   => 'https',
             'hostname' => 'www.smartcallesb.co.za',
@@ -121,7 +141,13 @@ class ClientTest extends \PHPUnit\Framework\TestCase
             'username' => 'joesoap',
             'password' => null,
         ];
-        self::assertAttributeEquals($expected, 'options', $client);
+
+        $reflection = new ReflectionClass($client);
+        $options = $reflection->getProperty('options');
+        $options->setAccessible(true);
+
+        self::assertEquals($expected, $options->getValue($client));
+
         $client->setPassword('sw0rdf1sh');
         $expected = [
             'scheme'   => 'https',
@@ -131,10 +157,15 @@ class ClientTest extends \PHPUnit\Framework\TestCase
             'username' => 'joesoap',
             'password' => 'sw0rdf1sh',
         ];
-        self::assertAttributeEquals($expected, 'options', $client);
+
+        $reflection = new ReflectionClass($client);
+        $options = $reflection->getProperty('options');
+        $options->setAccessible(true);
+
+        self::assertSame($expected, $options->getValue($client));
     }
 
-    public function testSetUsername()
+    public function testSetUsername(): void
     {
         $client = new Client([
             'scheme'   => 'https',
@@ -144,7 +175,7 @@ class ClientTest extends \PHPUnit\Framework\TestCase
             'password' => 'sw0rdf1sh',
         ]);
 
-        self::assertInstanceOf('Jacques\Smartcall\HttpClient\Client', $client);
+        self::assertInstanceOf(\Jacques\Smartcall\HttpClient\Client::class, $client);
         $expected = [
             'scheme'   => 'https',
             'hostname' => 'www.smartcallesb.co.za',
@@ -153,7 +184,12 @@ class ClientTest extends \PHPUnit\Framework\TestCase
             'username' => null,
             'password' => 'sw0rdf1sh',
         ];
-        self::assertAttributeEquals($expected, 'options', $client);
+
+        $reflection = new ReflectionClass($client);
+        $options = $reflection->getProperty('options');
+        $options->setAccessible(true);
+
+        self::assertEquals($expected, $options->getValue($client));
         $client->setUsername('joesoap');
         $expected = [
             'scheme'   => 'https',
@@ -163,6 +199,11 @@ class ClientTest extends \PHPUnit\Framework\TestCase
             'username' => 'joesoap',
             'password' => 'sw0rdf1sh',
         ];
-        self::assertAttributeEquals($expected, 'options', $client);
+
+        $reflection = new ReflectionClass($client);
+        $options = $reflection->getProperty('options');
+        $options->setAccessible(true);
+
+        self::assertSame($expected, $options->getValue($client));
     }
 }

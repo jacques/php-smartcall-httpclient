@@ -1,11 +1,9 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 /**
  * SmartCall Restful API (v3) HTTP Client.
  *
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2017-2020 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2017-2023 Jacques Marneweck.  All rights strictly reserved.
  * @license   MIT
  */
 
@@ -13,7 +11,7 @@ namespace Jacques\Smartcall\HttpClient\Tests\Integration;
 
 use Jacques\Smartcall\HttpClient\Client;
 
-class RechargeTest extends \PHPUnit\Framework\TestCase
+final class RechargeTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -46,10 +44,10 @@ class RechargeTest extends \PHPUnit\Framework\TestCase
 
         self::assertIsArray($response);
         self::assertCount(3, $response);
-        self::assertEquals('ok', $response['status']);
-        self::assertEquals(200, $response['http_code']);
+        self::assertSame('ok', $response['status']);
+        self::assertSame(200, $response['http_code']);
         $expected = '{"error":null,"responseCode":"SUCCESS","recharge":{"balance":99574.75,"orderReferenceId":130078272,"ticketNumber":"","boxNumber":"","batchNumber":"","voucherPin":"","expiryDate":null,"retailPrice":"450.00","dealerDiscount":"5.5"}}';
-        self::assertEquals($expected, $response['body']);
+        self::assertSame($expected, $response['body']);
     }
 
     /**
@@ -67,10 +65,10 @@ class RechargeTest extends \PHPUnit\Framework\TestCase
 
         self::assertIsArray($response);
         self::assertCount(3, $response);
-        self::assertEquals('ok', $response['status']);
-        self::assertEquals(200, $response['http_code']);
+        self::assertSame('ok', $response['status']);
+        self::assertSame(200, $response['http_code']);
         $expected = '{"error":null,"responseCode":"SUCCESS","recharge":{"balance":99149.50,"orderReferenceId":130078273,"ticketNumber":"","boxNumber":"","batchNumber":"","voucherPin":"","expiryDate":null,"retailPrice":"450.00","dealerDiscount":"5.5"}}';
-        self::assertEquals($expected, $response['body']);
+        self::assertSame($expected, $response['body']);
     }
 
     /**
@@ -88,8 +86,8 @@ class RechargeTest extends \PHPUnit\Framework\TestCase
 
         self::assertIsArray($response);
         self::assertCount(3, $response);
-        self::assertEquals('error', $response['status']);
-        self::assertEquals(400, $response['http_code']);
+        self::assertSame('error', $response['status']);
+        self::assertSame(400, $response['http_code']);
         self::assertInstanceOf('\StdClass', $response['body']);
         $expected = new \StdClass();
         $expected->code = 16;
@@ -113,8 +111,8 @@ class RechargeTest extends \PHPUnit\Framework\TestCase
 
         self::assertIsArray($response);
         self::assertCount(3, $response);
-        self::assertEquals('error', $response['status']);
-        self::assertEquals(401, $response['http_code']);
+        self::assertSame('error', $response['status']);
+        self::assertSame(401, $response['http_code']);
         self::assertInstanceOf('\StdClass', $response['body']);
         $expected = new \StdClass();
         $expected->responseDescription = 'Authorization denied. Token validation failed';

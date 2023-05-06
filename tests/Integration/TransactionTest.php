@@ -1,11 +1,9 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 /**
  * SmartCall Restful API (v3) HTTP Client.
  *
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2017-2020 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2017-2023 Jacques Marneweck.  All rights strictly reserved.
  * @license   MIT
  */
 
@@ -13,7 +11,7 @@ namespace Jacques\Smartcall\HttpClient\Tests\Integration;
 
 use Jacques\Smartcall\HttpClient\Client;
 
-class TransactionTest extends \PHPUnit\Framework\TestCase
+final class TransactionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -46,10 +44,10 @@ class TransactionTest extends \PHPUnit\Framework\TestCase
 
         self::assertIsArray($response);
         self::assertCount(3, $response);
-        self::assertEquals('ok', $response['status']);
-        self::assertEquals(200, $response['http_code']);
+        self::assertSame('ok', $response['status']);
+        self::assertSame(200, $response['http_code']);
         $expected = '{"error":null,"responseCode":"SUCCESS","transaction":{"description":"Order","network":"2000 SMS-R450","recipientMsisdn":"27831234567","statusDate":1519580942863,"reference":"130078272","amount":"R450.00","discount":"5.50%","cost":"R425.25","status":"Recharge Pending","statusId":"PENDING","ticketNumber":null,"voucherPin":null,"additionalVoucherPin":null,"boxNumber":null,"batchNumber":null,"expiryDate":null}}';
-        self::assertEquals($expected, $response['body']);
+        self::assertSame($expected, $response['body']);
     }
 
     /**
@@ -67,10 +65,10 @@ class TransactionTest extends \PHPUnit\Framework\TestCase
 
         self::assertIsArray($response);
         self::assertCount(3, $response);
-        self::assertEquals('ok', $response['status']);
-        self::assertEquals(200, $response['http_code']);
+        self::assertSame('ok', $response['status']);
+        self::assertSame(200, $response['http_code']);
         $expected = '{"error":null,"responseCode":"SUCCESS","transaction":{"description":"Order","network":"2000 SMS-R450","recipientMsisdn":"27831234567","statusDate":1519580942863,"reference":"130078272","amount":"R450.00","discount":"5.50%","cost":"R425.25","status":"Recharge Pending","statusId":"PENDING","ticketNumber":null,"voucherPin":null,"additionalVoucherPin":null,"boxNumber":null,"batchNumber":null,"expiryDate":null}}';
-        self::assertEquals($expected, $response['body']);
+        self::assertSame($expected, $response['body']);
     }
 
     /**
@@ -88,8 +86,8 @@ class TransactionTest extends \PHPUnit\Framework\TestCase
 
         self::assertIsArray($response);
         self::assertCount(3, $response);
-        self::assertEquals('error', $response['status']);
-        self::assertEquals(400, $response['http_code']);
+        self::assertSame('error', $response['status']);
+        self::assertSame(400, $response['http_code']);
         self::assertInstanceOf('\StdClass', $response['body']);
         $expected = new \StdClass();
         $expected->code = 1005;
@@ -113,8 +111,8 @@ class TransactionTest extends \PHPUnit\Framework\TestCase
 
         self::assertIsArray($response);
         self::assertCount(3, $response);
-        self::assertEquals('error', $response['status']);
-        self::assertEquals(401, $response['http_code']);
+        self::assertSame('error', $response['status']);
+        self::assertSame(401, $response['http_code']);
         self::assertInstanceOf('\StdClass', $response['body']);
         $expected = new \StdClass();
         $expected->responseDescription = 'Authorization denied. Token validation failed';
