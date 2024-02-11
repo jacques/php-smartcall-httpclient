@@ -1,0 +1,31 @@
+[{
+    "request": {
+        "method": "POST",
+        "url": "https:\/\/www.smartcallesb.co.za:8101\/webservice\/smartrica\/registrations",
+        "headers": {
+            "Host": "www.smartcallesb.co.za:8101",
+            "Content-Length": "0",
+            "Accept-Encoding": null,
+            "User-Agent": "SmartcallRestfulAPIClient-PHP\/0.0.1 GuzzleHttp\/6.2.1 curl\/7.55.1 PHP\/7.1.1",
+            "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJTbWFydGNhbGwgUkVTVGZ1bCBXZWJzZXJ2aWNlIiwibmJmIjoxNTE4ODcyMzEzLCJjbGllbnRVc2VybmFtZSI6InRhcCIsImNsaWVudElQIjoiNDEuNzkuNzcuMjMiLCJpc3MiOiJzbWFydGNhbGwuY28uemEiLCJleHAiOjE1MTg5NTg3MTMsImlhdCI6MTUxODg3MjMxM30.Gzvlzdzu-EEIy-swibi-K6yRBu-IlBoNHXymxOYquwA",
+            "Accept": null
+        }
+    },
+    "response": {
+        "status": {
+            "http_version": "1.1",
+            "code": "415",
+            "message": "Unsupported Media Type"
+        },
+        "headers": {
+            "Server": "Apache-Coyote\/1.1",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, DELETE, PUT",
+            "Access-Control-Allow-Headers": "Content-Type",
+            "Content-Type": "text\/html;charset=utf-8",
+            "Content-Length": "1159",
+            "Date": "Sun, 25 Feb 2018 10:47:02 GMT"
+        },
+        "body": "<html><head><title>JBoss Web\/7.5.7.Final-redhat-1 - JBWEB000064: Error report<\/title><style><!--H1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} H2 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:16px;} H3 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:14px;} BODY {font-family:Tahoma,Arial,sans-serif;color:black;background-color:white;} B {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;} P {font-family:Tahoma,Arial,sans-serif;background:white;color:black;font-size:12px;}A {color : black;}A.name {color : black;}HR {color : #525D76;}--><\/style> <\/head><body><h1>JBWEB000065: HTTP Status 415 - <\/h1><HR size=\"1\" noshade=\"noshade\"><p><b>JBWEB000309: type<\/b> JBWEB000067: Status report<\/p><p><b>JBWEB000068: message<\/b> <u><\/u><\/p><p><b>JBWEB000069: description<\/b> <u>JBWEB000135: The server refused this request because the request entity is in a format not supported by the requested resource for the requested method.<\/u><\/p><HR size=\"1\" noshade=\"noshade\"><h3>JBoss Web\/7.5.7.Final-redhat-1<\/h3><\/body><\/html>"
+    }
+}]

@@ -1,13 +1,12 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 /**
  * SmartCall Restful API (v3) HTTP Client.
  *
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2017-2019 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2017-2024 Jacques Marneweck.  All rights strictly reserved.
  * @license   MIT
  */
+
 require_once __DIR__.'/../vendor/autoload.php';
 
 \VCR\VCR::configure()

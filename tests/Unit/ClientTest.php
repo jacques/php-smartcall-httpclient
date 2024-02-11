@@ -3,7 +3,7 @@
  * SmartCall Restful API (v3) HTTP Client.
  *
  * @author    Jacques Marneweck <jacques@siberia.co.za>
- * @copyright 2017-2023 Jacques Marneweck.  All rights strictly reserved.
+ * @copyright 2017-2024 Jacques Marneweck.  All rights strictly reserved.
  * @license   MIT
  */
 
@@ -14,22 +14,6 @@ use ReflectionClass;
 
 final class ClientTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * Sets up the fixture, for example, opens a network connection.
-     * This method is called before a test is executed.
-     */
-    protected function setUp(): void
-    {
-    }
-
-    /**
-     * Tears down the fixture, for example, closes a network connection.
-     * This method is called after a test is executed.
-     */
-    protected function tearDown(): void
-    {
-    }
-
     public function testConstructor(): void
     {
         $client = new Client([
