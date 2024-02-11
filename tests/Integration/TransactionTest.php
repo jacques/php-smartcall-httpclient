@@ -11,7 +11,7 @@ namespace Jacques\Smartcall\HttpClient\Tests\Integration;
 
 use Jacques\Smartcall\HttpClient\Client;
 
-final class AuthTokenTest extends \PHPUnit\Framework\TestCase
+final class TransactionTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @vcr test_transaction_27813272161_pending
