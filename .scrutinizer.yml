@@ -9,7 +9,7 @@ coding_style:
     php: {  }
 build:
     environment:
-        php: 7.3.14
+        php: 8.2
     tests:
         override:
             -
